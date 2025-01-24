@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Formulario de contacto para CalzadoCalidoso">
+    <title>Contacto - CalzadoCalidoso</title>
+    <link rel="stylesheet" href="estilos_pagina_principal.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="navbar-logo">
+            <img src="logo.png" alt="Logo de la Tienda">
+            <span>CalzadoCalidoso</span>
+        </div>
+        <ul class="navbar-menu">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="catalogo.html">Catálogo</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+            <li><a href="#">Nosotros</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Política de envíos</a></li>
+        </ul>
+        <div class="navbar-icons">
+            <a href="https://www.facebook.com/"><img src="facebook.png" alt="Facebook"></a>
+            <a href="https://www.instagram.com/"><img src="instagram.png" alt="Instagram"></a>
+            <a href="https://www.x.com/"><img src="X.png" alt="Twitter"></a>
+        </div>
+    </header>
+
+    <!-- Sección de Contacto -->
+    <section class="contact-section">
+        <div class="contact-container">
+            <h1>Contáctanos</h1>
+            <p>Si tienes alguna duda o comentario, por favor completa el siguiente formulario y nos pondremos en contacto contigo lo más pronto posible.</p>
+
+            <form action="#" method="POST" class="contact-form">
+                <div class="form-group">
+                    <label for="name">Nombre</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Correo Electrónico</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Mensaje</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn">Enviar Mensaje</button>
+            </form>
+        </div>
+
+        <!-- Información de contacto adicional -->
+        <div class="contact-info">
+            <h2>Información de Contacto</h2>
+            <ul>
+                <li><strong>Dirección:</strong> Calle Ficticia 123, Ciudad, País</li>
+                <li><strong>Teléfono:</strong> +123 456 789</li>
+                <li><strong>Email:</strong> contacto@calzadocalidoso.com</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-logo">
+                <span>CalzadoCalidoso</span>
+            </div>
+            <ul class="footer-menu">
+                <li><a href="#">Términos y condiciones</a></li>
+                <li><a href="#">Política de privacidad</a></li>
+                <li><a href="#">Política de cookies</a></li>
+            </ul>
+            <div class="footer-contact">
+                <p style="color: #999;">Espacio reservado</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
