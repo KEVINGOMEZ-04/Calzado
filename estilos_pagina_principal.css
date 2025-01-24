@@ -1,0 +1,344 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f5f5f5;
+}
+
+/* Navbar Styles */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #000000;
+    color: white;
+    padding: 10px 20px;
+}
+
+.navbar-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.8em;
+    font-weight: 600;
+    color: white;
+}
+
+.navbar-logo img {
+    width: 40px;
+    height: 40px;
+}
+
+.navbar-logo span {
+    color: orange;
+}
+
+.navbar-menu {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    margin-left: 20px;
+}
+
+.navbar-menu li a {
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.navbar-menu li a:hover {
+    color: orange;
+}
+
+.navbar-icons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.navbar-icons img {
+    width: 24px;
+    height: 24px;
+}
+
+.cart-icon {
+    position: relative;
+}
+
+.cart-count {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background-color: red;
+    color: white;
+    font-size: 0.8em;
+    font-weight: 600;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Banner Styles con GIF de fondo */
+.banner {
+    background-image: url(banner-gif.gif); /* Cambia la ruta con la ubicación de tu GIF */
+    background-size: cover; /* Asegura que el GIF cubra todo el área disponible del banner */
+    background-position: center; /* Centra el GIF en el banner */
+    height: 60vh; /* Puedes ajustar el tamaño del banner según lo necesites */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    padding: 20px;
+    position: relative;
+}
+
+.banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Fondo oscuro para dar contraste al texto */
+    z-index: 1;
+}
+
+.banner-content {
+    position: relative;
+    z-index: 2;
+}
+
+.banner h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+}
+
+.banner p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+.banner .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1em;
+    font-weight: 600;
+    color: white;
+    background-color: orange;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.banner .btn:hover {
+    background-color: red;
+}
+
+/* Estilo de la sección sobre la tienda */
+.about-store {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px;
+    background-color: #f5f5f5;
+    margin-top: 30px;
+}
+
+.about-store-img img {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    border-radius: 10px;
+}
+
+.about-store-text {
+    max-width: 500px;
+    margin-left: 30px;
+}
+
+.about-store-text h2 {
+    font-size: 2.5em;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.about-store-text p {
+    font-size: 1.1em;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* Estilo de la sección del video (tipo Reel de Instagram) */
+.store-video {
+    text-align: center;
+    padding: 40px;
+    background-color: #fff;
+    margin-top: 40px;
+}
+
+.store-video h2 {
+    font-size: 2.5em;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.video-container iframe, 
+.video-container video {
+    width: 100%;
+    max-width: 360px;  /* Tamaño máximo de ancho para mantener la relación 9:16 */
+    height: 640px;     /* Altura adecuada para un video tipo Reel */
+    border-radius: 10px;
+}
+
+
+/* Footer Styles */
+footer {
+    background-color: #000000;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer-logo {
+    font-size: 1.5em;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.footer-logo span {
+    color: orange;
+}
+
+.footer-menu {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.footer-menu li a {
+    text-decoration: none;
+    color: white;
+    font-size: 0.9em;
+    transition: color 0.3s ease;
+}
+
+.footer-menu li a:hover {
+    color: orange;
+}
+
+.footer-contact {
+    font-size: 0.9em;
+}
+
+.footer-socials a img {
+    width: 24px;
+    height: 24px;
+    margin: 0 5px;
+}
+/* Catálogo */
+.catalog {
+    padding: 20px;
+    text-align: center;
+}
+
+.filters {
+    margin-bottom: 20px;
+}
+
+.filters label {
+    margin-right: 10px;
+}
+
+.products {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.product {
+    width: 200px;
+    margin: 15px;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+.product img {
+    width: 100%;
+    height: auto;
+}
+
+.add-to-cart {
+    padding: 10px 15px;
+    background-color: orange;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.add-to-cart:hover {
+    background-color: red;
+}
+
+/* Carrito */
+.cart-container {
+    position: fixed;
+    top: 10px;
+    right: 20px;
+}
+
+.cart-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.cart-modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    position: relative;
+    width: 80%;
+    max-width: 500px;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 30px;
+    cursor: pointer;
+}
