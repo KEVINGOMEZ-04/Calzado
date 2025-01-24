@@ -16,8 +16,8 @@
         <span>CalzadoCalidoso</span>
     </div>
     <ul class="navbar-menu">
-        <li><a href="#">Inicio</a></li>
-        <li><a href="#">Catálogo</a></li>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="catalogo.html">Catálogo</a></li>
         <li><a href="#">Nosotros</a></li>
         <li><a href="#">Contactos</a></li>
         <li><a href="#">FAQ</a></li>
@@ -27,12 +27,26 @@
         <a href="https://www.facebook.com/"><img src="facebook.png" alt="Facebook"></a>
         <a href="https://www.instagram.com/"><img src="instagram.png" alt="Instagram"></a>
         <a href="https://www.x.com/"><img src="X.png" alt="Twitter"></a>
-        <div class="cart-icon">
-            <img src="cc.png" alt="Carrito de compras">
-            <div class="cart-count">0</div>
-        </div>
     </div>
 </header>
+
+<!-- Botón del carrito flotante -->
+<div id="cart-icon" class="floating-cart">
+    <img src="cc.png" alt="Carrito de compras">
+    <span id="cart-count">0</span>
+</div>
+
+<!-- Carrito flotante -->
+<div id="cart-container" class="cart-container hidden">
+    <h2>Carrito de Compras</h2>
+    <ul id="cart-items" class="cart-items">
+        <!-- Los productos añadidos aparecerán aquí dinámicamente -->
+    </ul>
+    <div class="cart-total">
+        <strong>Total:</strong> $<span id="cart-total">0.00</span>
+    </div>
+    <button id="checkout-btn" class="btn">Finalizar Compra</button>
+</div>
 
 <!-- Banner -->
 <section class="banner">
@@ -47,32 +61,26 @@
 <section class="best-sellers">
     <h2>Productos Más Vendidos</h2>
     <div class="product-slider">
-        <!-- Producto 1 -->
         <a href="#" class="product-item">
             <img src="Nike2000.jpeg" alt="Producto 1">
             <p class="product-name">Nike 2000 F</p>
         </a>
-        <!-- Producto 2 -->
         <a href="#" class="product-item">
             <img src="PumaNitro.jpeg" alt="Producto 2">
             <p class="product-name">Puma Nitro</p>
         </a>
-        <!-- Producto 3 -->
         <a href="#" class="product-item">
             <img src="AdidasYeezy.jpeg" alt="Producto 3">
             <p class="product-name">Adidas Yeezy</p>
         </a>
-        <!-- Producto 4 -->
         <a href="#" class="product-item">
             <img src="AdidasContinental.jpeg" alt="Producto 4">
             <p class="product-name">Adidas Continental</p>
         </a>
-        <!-- Producto 5 -->
         <a href="#" class="product-item">
             <img src="ArmourStorm.jpeg" alt="Producto 5">
             <p class="product-name">Armour Storm</p>
         </a>
-        <!-- Producto 6 -->
         <a href="#" class="product-item">
             <img src="ChanclasNike.jpeg" alt="Producto 6">
             <p class="product-name">Chanclas Nike</p>
@@ -80,8 +88,7 @@
     </div>
 </section>
 
-
-<!-- Sección de Imagen y Texto sobre la tienda -->
+<!-- Sección sobre la tienda -->
 <section class="about-store">
     <div class="about-store-img">
         <img src="imagendelatienda.jpeg" alt="Imagen Tienda">
@@ -93,13 +100,14 @@
     </div>
 </section>
 
-<!-- Sección del Video sobre la tienda -->
+<!-- Sección del video -->
 <section class="store-video">
     <h2>Conoce más sobre nosotros</h2>
     <div class="video-container">
         <iframe width="360" height="640" src="Reel.mp4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
 </section>
+
 
 <!-- Footer -->
 <footer>
@@ -113,16 +121,77 @@
             <li><a href="#">Política de cookies</a></li>
         </ul>
         <div class="footer-contact">
-            <p>Contacto: +57 123 456 789</p>
-            <p>Email: contacto@calzadocalidoso.com</p>
-        </div>
-        <div class="footer-socials">
-            <a href="https://www.facebook.com/"><img src="facebook.png" alt="Facebook"></a>
-            <a href="https://www.instagram.com/"><img src="instagram.png" alt="Instagram"></a>
-            <a href="https://www.X.com/"><img src="X.png" alt="Twitter"></a>
+            <p style="color: #999;">Espacio reservado</p>
         </div>
     </div>
 </footer>
 
+<!-- Script del carrito flotante -->
+<script>
+    // Variables globales
+    let cartItems = [];
+    let total = 0.0;
+
+    // Referencias a elementos del DOM
+    const cartIcon = document.getElementById("cart-icon");
+    const cartContainer = document.getElementById("cart-container");
+    const cartCount = document.getElementById("cart-count");
+    const cartItemsContainer = document.getElementById("cart-items");
+    const cartTotal = document.getElementById("cart-total");
+    const checkoutBtn = document.getElementById("checkout-btn");
+
+    // Toggle carrito
+    cartIcon.addEventListener("click", () => {
+        cartContainer.classList.toggle("hidden");
+    });
+
+    // Añadir producto al carrito
+    function addToCart(productName, price) {
+        cartItems.push({ productName, price });
+        total += parseFloat(price);
+        updateCart();
+    }
+
+    // Actualizar carrito
+    function updateCart() {
+        cartItemsContainer.innerHTML = ""; // Limpiar lista
+        cartItems.forEach((item, index) => {
+            const li = document.createElement("li");
+            li.innerHTML = `
+                ${item.productName} - $${item.price.toFixed(2)}
+                <button onclick="removeFromCart(${index})">X</button>
+            `;
+            cartItemsContainer.appendChild(li);
+        });
+
+        cartTotal.textContent = total.toFixed(2);
+        cartCount.textContent = cartItems.length;
+    }
+
+    // Eliminar producto del carrito
+    function removeFromCart(index) {
+        total -= cartItems[index].price;
+        cartItems.splice(index, 1);
+        updateCart();
+    }
+
+    // Finalizar compra
+    checkoutBtn.addEventListener("click", () => {
+        const orderCode = generateOrderCode();
+        alert(`Código de pedido: ${orderCode}`);
+        navigator.clipboard.writeText(orderCode); // Copiar al portapapeles
+        cartItems = [];
+        total = 0.0;
+        updateCart();
+    });
+
+    // Generar código de pedido
+    function generateOrderCode() {
+        return cartItems
+            .map(item => `${item.productName}-${item.price.toFixed(2)}`)
+            .join("|");
+    }
+</script>
 </body>
 </html>
+
