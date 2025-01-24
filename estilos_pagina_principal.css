@@ -147,128 +147,75 @@ body {
     background-color: red;
 }
 
-/* Estilo para la barra de productos más vendidos */
+/* Barra de productos más vendidos */
 .best-sellers {
-    padding: 40px;
+    margin: 20px 0;
+    padding: 20px;
     text-align: center;
-    background-color: #f5f5f5;
-    margin-top: 40px;
+    background-color: #f9f9f9; /* Fondo claro para la barra */
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .best-sellers h2 {
-    font-size: 2.5em;
+    font-size: 2em;
     color: #333;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
-/* Contenedor del deslizador de productos */
+/* Contenedor de los productos */
 .product-slider {
     display: flex;
-    overflow: hidden;
-    justify-content: flex-start;
-    align-items: center;
-    width: 100%;
     gap: 20px;
-    position: relative;
+    justify-content: flex-start;  /* Para alinear los productos al inicio */
+    overflow-x: auto;
+    padding: 10px 0;
+    scroll-behavior: smooth; /* Suaviza el desplazamiento */
 }
 
-/* Contenedor de las imágenes de los productos */
-.product-slider .product-item {
+/* Producto individual */
+.product-item {
     flex: 0 0 auto;
-    width: 400px; /* Aumentamos el tamaño de las imágenes */
-    height: 450px;
-    background-color: #fff;
-    border-radius: 15px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-    padding: 20px;
+    width: 250px;  /* Aumentamos el tamaño */
     text-align: center;
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-    position: relative;
-    overflow: hidden;
-    cursor: pointer;
-}
-
-.product-slider .product-item a {
-    display: block;
-    text-decoration: none;
-}
-
-/* Las imágenes de los productos */
-.product-slider .product-item img {
-    width: 100%;
-    max-width: 380px;
-    height: auto;
+    transition: transform 0.3s ease;
+    background-color: #fff;  /* Fondo blanco para que destaque */
     border-radius: 10px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    object-fit: cover;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Efecto hover en las imágenes - zoom y sombra */
-.product-slider .product-item:hover {
-    transform: translateY(-15px); /* Sube el producto más */
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2); /* Aumenta la sombra al pasar el mouse */
+/* Imagen del producto */
+.product-item img {
+    width: 100%;
+    height: 220px; /* Fija una altura para la imagen */
+    object-fit: cover;  /* Ajusta la imagen para cubrir el contenedor sin distorsión */
+    border-radius: 10px 10px 0 0;  /* Bordes redondeados arriba */
 }
 
-/* Efecto de zoom más fuerte en la imagen */
-.product-slider .product-item:hover img {
-    transform: scale(1.15); /* Zoom más pronunciado */
-}
-
-/* Estilo para el nombre del producto */
-.product-slider .product-item .product-name {
-    font-size: 1.4em;
+/* Texto del producto */
+.product-item p {
+    font-size: 1.1em;
     font-weight: bold;
     color: #333;
-    margin-top: 15px;
-}
-
-/* Estilo para el precio del producto */
-.product-slider .product-item .product-price {
-    font-size: 1.3em;
-    font-weight: 600;
-    color: #fff;
-    background-color: rgba(0, 0, 0, 0.6); /* Fondo semitransparente */
-    padding: 10px;
-    border-radius: 5px;
     margin-top: 10px;
-    display: inline-block;
-    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-/* Efecto hover en el precio */
-.product-slider .product-item:hover .product-price {
-    background-color: #E74C3C; /* Fondo rojo cuando pasa el mouse */
-    transform: scale(1.05); /* Aumento sutil al hacer hover */
+.product-item:hover {
+    transform: scale(1.05);  /* Efecto al pasar el mouse */
 }
 
-/* Animación de desplazamiento de derecha a izquierda */
-@keyframes moveSlider {
-    0% {
-        transform: translateX(100%); /* Empieza fuera de la pantalla a la derecha */
-    }
-    100% {
-        transform: translateX(-100%); /* Desplaza hasta salir por la izquierda */
-    }
+/* Barra de desplazamiento personalizada */
+.product-slider::-webkit-scrollbar {
+    height: 8px;
 }
 
-/* Aplicando la animación al contenedor de los productos */
-.product-slider {
-    animation: moveSlider 20s linear infinite; /* Animación más rápida, de 20 segundos */
+.product-slider::-webkit-scrollbar-thumb {
+    background-color: #333;
+    border-radius: 5px;
 }
 
-/* Para mayor fluidez, se puede usar un wrapper con productos duplicados */
-.product-slider .product-item::after {
-    content: "";
-    display: block;
-    width: 0;
-}
-
-/* Aseguramos que los productos no se vean apretados */
-.product-slider {
-    display: flex;
-    flex-wrap: nowrap;
-    gap: 20px;
-    animation: moveSlider 20s linear infinite;
+.product-slider::-webkit-scrollbar-track {
+    background-color: #f0f0f0;
 }
 
 
