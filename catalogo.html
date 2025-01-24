@@ -1,59 +1,132 @@
-<!DOCTYPE html>  
-<html lang="es">  
-<head>  
-    <meta charset="UTF-8">  
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-    <title>Catálogo - CalzadoCalidoso</title>  
-    <link rel="stylesheet" href="css/styles.css">  
-</head>  
-<body>  
-    <header>  
-        <nav>  
-            <ul class="navbar">  
-                <li><a href="index.html">Inicio</a></li>  
-                <li><a href="catalogo.html">Catálogo</a></li>  
-                <li><a href="nosotros.html">Nosotros</a></li>  
-                <li><a href="contacto.html">Contactos</a></li>  
-                <li><a href="faq.html">FAQ</a></li>  
-                <li><a href="politica.html">Política de envíos y devoluciones</a></li>  
-            </ul>  
-            <div class="cart-icon">  
-                <img src="https://img.icons8.com/material-outlined/24/ffffff/shopping-cart.png" alt="Carrito de Compras">  
-                <span class="cart-count">0</span>  
-            </div>  
-        </nav>  
-    </header>  
-    
-    <main>  
-        <h2>Catálogo de Productos</h2>  
-        <section class="product-grid">  
-            <div class="product-item">  
-                <img src="https://via.placeholder.com/150" alt="Producto 1">  
-                <h3>Producto 1</h3>  
-                <p>Descripción breve del producto.</p>  
-                <p>Precio: $50.00</p>  
-                <button class="add-to-cart">Añadir al carrito</button>  
-                <select class="size-select">  
-                    <option value="M">M</option>  
-                    <option value="L">L</option>  
-                    <option value="XL">XL</option>  
-                </select>  
-            </div>  
-            <!-- Añadir más productos aquí -->  
-            <div class="product-item">  
-                <img src="https://via.placeholder.com/150" alt="Producto 2">  
-                <h3>Producto 2</h3>  
-                <p>Descripción breve del producto.</p>  
-                <p>Precio: $60.00</p>  
-                <button class="add-to-cart">Añadir al carrito</button>  
-                <select class="size-select">  
-                    <option value="M">M</option>  
-                    <option value="L">L</option>  
-                    <option value="XL">XL</option>  
-                </select>  
-            </div>  
-        </section>  
-    </main>  
-    <script src="js/scripts.js"></script>  
-</body>  
-</html>
+<!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Catálogo - CalzadoCalidoso</title>
+
+            <link rel="stylesheet" href="estilos_catalogo.css">
+        </head>
+        <body>
+        
+        <!-- Navbar (Armonizado con la página principal) -->
+        <header class="navbar">
+            <div class="navbar-logo">
+                <img src="logo.png" alt="Logo de la Tienda">
+                <span>CalzadoCalidoso</span>
+            </div>
+        </header>
+        
+        <!-- Icono flotante del carrito -->
+        <div class="carrito-flotante">
+            <a href="carrito.html">
+                <img src="carrito-icono.png" alt="Carrito de compras">
+            </a>
+        </div>
+        
+        <!-- Contenedor principal -->
+        <main class="catalogo-container">
+            <!-- Filtros -->
+            <aside class="filtros">
+                <h3>Categorías</h3>
+                <ul>
+                    <li><a href="#">Hombres</a></li>
+                    <li><a href="#">Mujeres</a></li>
+                    <li><a href="#">Niños</a></li>
+                    <li><a href="#">Ofertas</a></li>
+                </ul>
+                <h3>Explorar por</h3>
+                <ul>
+                    <li><a href="#">Todos los productos</a></li>
+                </ul>
+                <h3>Filtrar por</h3>
+                <div class="filtro-precio">
+                    <label for="min-precio">Precio:</label>
+                    <div class="precio-inputs">
+                        <input type="number" id="min-precio" name="min-precio" placeholder="Mínimo">
+                        <input type="number" id="max-precio" name="max-precio" placeholder="Máximo">
+                    </div>
+                </div>
+                <div class="filtro-color">
+                    <h4>Color</h4>
+                    <ul>
+                        <li><input type="checkbox" id="negro"> <label for="negro">Negro</label></li>
+                        <li><input type="checkbox" id="blanco"> <label for="blanco">Blanco</label></li>
+                        <li><input type="checkbox" id="rojo"> <label for="rojo">Rojo</label></li>
+                    </ul>
+                </div>
+                <div class="filtro-talla">
+                    <h4>Talla</h4>
+                    <ul>
+                        <li><input type="checkbox" id="30"> <label for="30">30</label></li>
+                        <li><input type="checkbox" id="32"> <label for="32">32</label></li>
+                        <li><input type="checkbox" id="34"> <label for="34">34</label></li>
+                        <li><input type="checkbox" id="36"> <label for="36">36</label></li>
+                        <li><input type="checkbox" id="38"> <label for="38">38</label></li>
+                        <li><input type="checkbox" id="40"> <label for="40">40</label></li>
+                        <li><input type="checkbox" id="42"> <label for="42">42</label></li>
+                    </ul>
+                </div>
+                <button class="aplicar-filtros">Aplicar filtros</button>
+            </aside>
+        
+            <!-- Productos -->
+            <section class="productos">
+                <h2>Todos los productos</h2>
+                <div class="grid-productos">
+                    <!-- Producto 1 -->
+                    <div class="producto">
+                        <a href="producto1.html">
+                            <img src="producto1.jpg" alt="Producto 1">
+                            <h4>Producto 1</h4>
+                            <p>$120.000</p>
+                        </a>
+                    </div>
+                    <!-- Producto 2 -->
+                    <div class="producto">
+                        <a href="producto2.html">
+                            <img src="producto2.jpg" alt="Producto 2">
+                            <h4>Producto 2</h4>
+                            <p>$150.000</p>
+                        </a>
+                    </div>
+                    <!-- Producto 3 -->
+                    <div class="producto">
+                        <a href="producto3.html">
+                            <img src="producto3.jpg" alt="Producto 3">
+                            <h4>Producto 3</h4>
+                            <p>$180.000</p>
+                        </a>
+                    </div>
+                    <!-- Producto 4 -->
+                    <div class="producto">
+                        <a href="producto4.html">
+                            <img src="producto4.jpg" alt="Producto 4">
+                            <h4>Producto 4</h4>
+                            <p>$200.000</p>
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <!-- Footer -->
+        <footer>
+            <div class="footer-container">
+                <p>CalzadoCalidoso &copy; 2025</p>
+            </div>
+        </footer>
+        
+        <!-- Scripts necesarios -->
+        <script>
+            // Comprobación del funcionamiento del carrito flotante
+            document.querySelector('.carrito-flotante a').addEventListener('click', function(event) {
+                event.preventDefault();
+                alert('Carrito funcional! Redirigiendo a carrito.html...');
+                window.location.href = 'carrito.html';
+            });
+        </script>
+        
+        </body>
+        </html>
+        
