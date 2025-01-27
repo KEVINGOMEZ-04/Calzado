@@ -100,7 +100,45 @@ function applyFilters() {
         }
     });
 
-    // Mostrar el mensaje si no hay productos
-    const noProductsMessage = document.getElementById('no-products-message');
-    noProductsMessage.style.display = foundProducts ? 'none' : 'block';
+/* Estilo para el mensaje de no productos */
+.no-products-message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 2px dashed #ccc;
+    border-radius: 10px;
+    color: #555;
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+}
+
+.no-results-image {
+    width: 150px;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.no-results-text {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.reset-filters-btn {
+    background-color: #ff6b6b;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.reset-filters-btn:hover {
+    background-color: #e55a5a;
 }
