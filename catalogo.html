@@ -167,10 +167,14 @@
         </div>
     </section>
 
-    <!-- Mensaje si no hay productos disponibles -->
-    <div id="no-products-message" style="display: none;">
-        <p>No hay productos disponibles para los filtros seleccionados.</p>
-    </div>
+<!-- Mensaje si no hay productos disponibles -->
+<div id="no-products-message" class="no-products-message" style="display: none;">
+    <img src="sin-resultados.png" alt="Sin resultados" class="no-results-image">
+    <p class="no-results-text">¡Ups! No encontramos productos que coincidan con tus filtros. Intenta ajustar los filtros para ver más opciones.</p>
+    <button class="reset-filters-btn" onclick="resetFilters()">Reiniciar filtros</button>
+</div>
+
+    
 </main>
 
 <!-- Footer -->
