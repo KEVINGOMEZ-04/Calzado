@@ -61,11 +61,10 @@ function generateOrderCode() {
         .map(item => `${item.productName}-${item.price.toFixed(2)}`)
         .join("|");
 }
-
 function applyFilters() {
     // Obtener los valores de los filtros
-    const minPrice = parseInt(document.getElementById('min-precio').value || '0');
-    const maxPrice = parseInt(document.getElementById('max-precio').value || 'Infinity');
+    const minPrice = parseInt(document.getElementById('min-precio').value || '0', 10);
+    const maxPrice = parseInt(document.getElementById('max-precio').value || 'Infinity', 10);
     const selectedColors = Array.from(document.querySelectorAll('.filtro-color input:checked')).map(input => input.id);
     const selectedSize = document.getElementById('select-talla').value;
 
@@ -73,11 +72,18 @@ function applyFilters() {
     const products = document.querySelectorAll('.producto');
     let foundProducts = false; // Variable para verificar si encontramos productos
 
+    // Verificar si los precios son válidos
+    if (isNaN(minPrice) || isNaN(maxPrice) || minPrice < 0 || maxPrice < 0) {
+        alert("Por favor, ingresa precios válidos.");
+        return;
+    }
+
     // Filtrar productos
     products.forEach(product => {
-        const price = parseInt(product.querySelector('p').textContent.replace(/[^0-9]/g, '')); // Eliminar comas y convertir a número
-        const colors = product.dataset.colores.split(','); // Obtener array de colores del atributo data-colores
-        const sizes = product.dataset.tallas.split(','); // Obtener array de tallas del atributo data-tallas
+        const priceElement = product.querySelector('p');
+        const price = priceElement ? parseInt(priceElement.textContent.replace(/[^0-9]/g, ''), 10) : 0; // Eliminar comas y convertir a número
+        const colors = product.dataset.colores ? product.dataset.colores.split(',') : [];
+        const sizes = product.dataset.tallas ? product.dataset.tallas.split(',') : [];
 
         // Validar filtros
         const matchesPrice = price >= minPrice && price <= maxPrice;
@@ -101,3 +107,4 @@ function applyFilters() {
         noProductsMessage.style.display = 'block'; // Mostrar mensaje si no hay productos
     }
 }
+
