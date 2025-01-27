@@ -6,6 +6,22 @@
     <title>Catálogo - CalzadoCalidoso</title>
     <link rel="stylesheet" href="estilos_pagina_principal.css">
     <link rel="stylesheet" href="estilos_catalogo.css">
+    <style>
+        /* Cambios solicitados */
+        .filtros ul li a {
+            color: #d4af37; /* Color dorado para las categorías */
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .filtros ul li a:hover {
+            color: #c89e35; /* Dorado más oscuro al pasar el cursor */
+        }
+
+        .filtros h3 {
+            border-bottom: none; /* Quita la línea inferior */
+        }
+    </style>
 </head>
 <body>
 
@@ -19,7 +35,7 @@
         <li><a href="index.html">Inicio</a></li>
         <li><a href="catalogo.html">Catálogo</a></li>
         <li><a href="#">Nosotros</a></li>
-        <li><a href="#">Contactos</a></li>
+        <li><a href="contacto.html">Contactos</a></li>
         <li><a href="#">FAQ</a></li>
         <li><a href="#">Política de envíos</a></li>
     </ul>
@@ -105,29 +121,29 @@
         <div class="grid-productos">
             <div class="producto" data-colores="negro,rojo,blanco" data-tallas="20,22,24,26,28,30,32,34,36,38,40,42">
                 <a href="producto1.html" class="product-link">
-                    <img src="ChanclasNike.jpeg" alt="Producto 1">
-                    <h4>Chanclas Nike</h4>
-                    <p>$120,000</p>
+                    <img src="AdidasContinental.jpeg" alt="Producto 1">
+                    <h4>Adidas Continental</h4>
+                    <p>$140.000</p>
                     <!-- Disponibilidad de color -->
                     <div class="product-icons">
-                        <span class="color-icon" style="background-color: black;" title="Negro"></span>
-                        <span class="color-icon" style="background-color: red;" title="Rojo"></span>
-                        <span class="color-icon" style="background-color: white;" title="Blanco"></span>
+                        <span class="color-icon" style="background-color: black; border: 2px solid #f5f5f5;" title="Negro"></span>
+                        <span class="color-icon" style="background-color: red; border: 2px solid #f5f5f5;" title="Rojo"></span>
+                        <span class="color-icon" style="background-color: white; border: 2px solid #333;" title="Blanco"></span>
                     </div>
                     <!-- Rango de tallas -->
                     <p class="available-sizes">Tallas disponibles: 20 - 42</p>
                 </a>
             </div>
-            
+
             <!-- Producto 2 -->
             <div class="producto" data-colores="rojo" data-tallas="30,32,34,36,38,40,42">
                 <a href="producto2.html" class="product-link">
-                    <img src="producto2.jpg" alt="Producto 2">
-                    <h4>Producto 2</h4>
-                    <p>$150,000</p>
+                    <img src="AdidasYeezy.jpeg" alt="Producto 2">
+                    <h4>Adidas Yeezy</h4>
+                    <p>$160,000</p>
                     <!-- Disponibilidad de color -->
                     <div class="product-icons">
-                        <span class="color-icon" style="background-color: red;" title="Rojo"></span>
+                        <span class="color-icon" style="background-color: red; border: 2px solid #f5f5f5;" title="Rojo"></span>
                     </div>
                     <!-- Rango de tallas -->
                     <p class="available-sizes">Tallas disponibles: 30 - 42</p>
@@ -137,12 +153,12 @@
             <!-- Producto 3 -->
             <div class="producto" data-colores="blanco" data-tallas="20,22,24,26,28,30,32,34,36,38,40,42">
                 <a href="producto3.html" class="product-link">
-                    <img src="producto3.jpg" alt="Producto 3">
-                    <h4>Producto 3</h4>
+                    <img src="ArmourStorm.jpeg" alt="Producto 3">
+                    <h4>Armour Storm</h4>
                     <p>$180,000</p>
                     <!-- Disponibilidad de color -->
                     <div class="product-icons">
-                        <span class="color-icon" style="background-color: white;" title="Blanco"></span>
+                        <span class="color-icon" style="background-color: white; border: 2px solid #333;" title="Blanco"></span>
                     </div>
                     <!-- Rango de tallas -->
                     <p class="available-sizes">Tallas disponibles: 20 - 42</p>
@@ -152,13 +168,45 @@
             <!-- Producto 4 -->
             <div class="producto" data-colores="negro,blanco" data-tallas="20,22,24,26,28,30,32,34,36,38,40,42">
                 <a href="producto4.html" class="product-link">
-                    <img src="producto4.jpg" alt="Producto 4">
-                    <h4>Producto 4</h4>
-                    <p>$200,000</p>
+                    <img src="ChanclasNike.jpeg" alt="Producto 4">
+                    <h4>Chanclas Nike</h4>
+                    <p>$120.000</p>
                     <!-- Disponibilidad de color -->
                     <div class="product-icons">
-                        <span class="color-icon" style="background-color: black;" title="Negro"></span>
-                        <span class="color-icon" style="background-color: white;" title="Blanco"></span>
+                        <span class="color-icon" style="background-color: black; border: 2px solid #f5f5f5;" title="Negro"></span>
+                        <span class="color-icon" style="background-color: white; border: 2px solid #333;" title="Blanco"></span>
+                    </div>
+                    <!-- Rango de tallas -->
+                    <p class="available-sizes">Tallas disponibles: 20 - 42</p>
+                </a>
+            </div>
+
+            <!-- Producto 5 -->
+            <div class="producto" data-colores="negro,blanco" data-tallas="20,22,24,26,28,30,32,34,36,38,40,42">
+                <a href="producto5.html" class="product-link">
+                    <img src="Nike2000.jpeg" alt="Producto 5">
+                    <h4>Nike 2000</h4>
+                    <p>$140.000</p>
+                    <!-- Disponibilidad de color -->
+                    <div class="product-icons">
+                        <span class="color-icon" style="background-color: black; border: 2px solid #f5f5f5;" title="Negro"></span>
+                        <span class="color-icon" style="background-color: white; border: 2px solid #333;" title="Blanco"></span>
+                    </div>
+                    <!-- Rango de tallas -->
+                    <p class="available-sizes">Tallas disponibles: 20 - 42</p>
+                </a>
+            </div>
+
+            <!-- Producto 6 -->
+            <div class="producto" data-colores="negro,blanco" data-tallas="20,22,24,26,28,30,32,34,36,38,40,42">
+                <a href="producto6.html" class="product-link">
+                    <img src="PumaNitro.jpeg" alt="Producto 6">
+                    <h4>Puma Nitro</h4>
+                    <p>$150.000</p>
+                    <!-- Disponibilidad de color -->
+                    <div class="product-icons">
+                        <span class="color-icon" style="background-color: black; border: 2px solid #f5f5f5;" title="Negro"></span>
+                        <span class="color-icon" style="background-color: white; border: 2px solid #333;" title="Blanco"></span>
                     </div>
                     <!-- Rango de tallas -->
                     <p class="available-sizes">Tallas disponibles: 20 - 42</p>
@@ -174,7 +222,6 @@
     <button class="reset-filters-btn" onclick="resetFilters()">Reiniciar filtros</button>
 </div>
 
-    
 </main>
 
 <!-- Footer -->
