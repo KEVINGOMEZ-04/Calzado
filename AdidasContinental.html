@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adidas Continental - Detalles del Producto</title>
+    <link rel="stylesheet" href="estilos_pagina_principal.css">
+    <link rel="stylesheet" href="estilos_catalogo.css">
+    <style>
+        .producto-detalle {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .producto-detalle .imagen {
+            flex: 1;
+            max-width: 500px;
+        }
+
+        .producto-detalle .imagen img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .producto-detalle .info {
+            flex: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .producto-detalle .info h1 {
+            font-size: 2rem;
+            color: #333;
+        }
+
+        .producto-detalle .info p {
+            font-size: 1.2rem;
+            color: #555;
+        }
+
+        .producto-detalle .info .precio {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #d4af37;
+        }
+
+        .producto-detalle .info .botones {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .producto-detalle .info .botones button {
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            font-weight: bold;
+            color: white;
+            background-color: #1E3A8A;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .producto-detalle .info .botones button:hover {
+            background-color: #142c71;
+        }
+
+        .producto-detalle .info .botones .carrito {
+            background-color: #d4af37;
+        }
+
+        .producto-detalle .info .botones .carrito:hover {
+            background-color: #c89e35;
+        }
+
+        .producto-detalle .info select {
+            padding: 0.5rem;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<header class="navbar">
+    <div class="navbar-logo">
+        <img src="logo.png" alt="Logo de la Tienda">
+        <span>CalzadoCalidoso</span>
+    </div>
+    <ul class="navbar-menu">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="catalogo.html">Catálogo</a></li>
+        <li><a href="#">Nosotros</a></li>
+        <li><a href="contacto.html">Contactos</a></li>
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">Política de envíos</a></li>
+    </ul>
+    <div class="navbar-icons">
+        <a href="https://www.facebook.com/"><img src="facebook.png" alt="Facebook"></a>
+        <a href="https://www.instagram.com/"><img src="instagram.png" alt="Instagram"></a>
+        <a href="https://www.x.com/"><img src="X.png" alt="Twitter"></a>
+    </div>
+</header>
+
+<!-- Detalles del Producto -->
+<main>
+    <section class="producto-detalle">
+        <div class="imagen">
+            <img src="AdidasContinental.jpeg" alt="Adidas Continental">
+        </div>
+        <div class="info">
+            <h1>Adidas Continental</h1>
+            <p>El calzado perfecto para combinar estilo y comodidad. Hecho con materiales de alta calidad para garantizar durabilidad y soporte en tu día a día.</p>
+            <p class="precio">$140.000</p>
+
+            <div class="botones">
+                <label for="talla">Selecciona tu talla:</label>
+                <select id="talla">
+                    <option value="20">20</option>
+                    <option value="22">22</option>
+                    <option value="24">24</option>
+                    <option value="26">26</option>
+                    <option value="28">28</option>
+                    <option value="30">30</option>
+                    <option value="32">32</option>
+                    <option value="34">34</option>
+                    <option value="36">36</option>
+                    <option value="38">38</option>
+                    <option value="40">40</option>
+                    <option value="42">42</option>
+                </select>
+
+                <label for="color">Selecciona el color:</label>
+                <select id="color">
+                    <option value="negro">Negro</option>
+                    <option value="rojo">Rojo</option>
+                    <option value="blanco">Blanco</option>
+                </select>
+
+                <button class="carrito">Agregar al Carrito</button>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- Footer -->
+<footer>
+    <div class="footer-container">
+        <p>CalzadoCalidoso &copy; 2025</p>
+    </div>
+</footer>
+
+</body>
+</html>
