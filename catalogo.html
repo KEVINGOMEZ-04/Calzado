@@ -1,132 +1,187 @@
 <!DOCTYPE html>
-        <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Catálogo - CalzadoCalidoso</title>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo - CalzadoCalidoso</title>
+    <link rel="stylesheet" href="estilos_pagina_principal.css">
+    <link rel="stylesheet" href="estilos_catalogo.css">
+</head>
+<body>
 
-            <link rel="stylesheet" href="estilos_catalogo.css">
-        </head>
-        <body>
-        
-        <!-- Navbar (Armonizado con la página principal) -->
-        <header class="navbar">
-            <div class="navbar-logo">
-                <img src="logo.png" alt="Logo de la Tienda">
-                <span>CalzadoCalidoso</span>
+<!-- Navbar -->
+<header class="navbar">
+    <div class="navbar-logo">
+        <img src="logo.png" alt="Logo de la Tienda">
+        <span>CalzadoCalidoso</span>
+    </div>
+    <ul class="navbar-menu">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="catalogo.html">Catálogo</a></li>
+        <li><a href="#">Nosotros</a></li>
+        <li><a href="#">Contactos</a></li>
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">Política de envíos</a></li>
+    </ul>
+    <div class="navbar-icons">
+        <a href="https://www.facebook.com/"><img src="facebook.png" alt="Facebook"></a>
+        <a href="https://www.instagram.com/"><img src="instagram.png" alt="Instagram"></a>
+        <a href="https://www.x.com/"><img src="X.png" alt="Twitter"></a>
+    </div>
+</header>
+
+<!-- Icono flotante del carrito -->
+<div id="cart-icon" class="floating-cart">
+    <img src="cart-icon.png" alt="Carrito de compras">
+    <span id="cart-count">0</span>
+</div>
+
+<!-- Carrito flotante -->
+<div id="cart-container" class="cart-container hidden">
+    <h2>Tu carrito</h2>
+    <ul id="cart-items">
+        <!-- Los productos añadidos al carrito aparecerán aquí dinámicamente -->
+    </ul>
+    <div class="cart-total">
+        <strong>Total:</strong> $<span id="cart-total">0.00</span>
+    </div>
+    <button id="checkout-btn" class="btn">Finalizar Compra</button>
+</div>
+
+<!-- Contenedor principal -->
+<main class="catalogo-container">
+    <!-- Filtros -->
+    <aside class="filtros">
+        <h3>Categorías</h3>
+        <ul>
+            <li><a href="#">Hombres</a></li>
+            <li><a href="#">Mujeres</a></li>
+            <li><a href="#">Niños</a></li>
+            <li><a href="#">Ofertas</a></li>
+        </ul>
+        <h3>Explorar por</h3>
+        <ul>
+            <li><a href="#">Todos los productos</a></li>
+        </ul>
+        <h3>Filtrar por</h3>
+        <div class="filtro-precio">
+            <label for="min-precio">Precio:</label>
+            <div class="precio-inputs">
+                <input type="number" id="min-precio" name="min-precio" placeholder="Mínimo">
+                <input type="number" id="max-precio" name="max-precio" placeholder="Máximo">
             </div>
-        </header>
-        
-        <!-- Icono flotante del carrito -->
-        <div class="carrito-flotante">
-            <a href="carrito.html">
-                <img src="carrito-icono.png" alt="Carrito de compras">
-            </a>
         </div>
-        
-        <!-- Contenedor principal -->
-        <main class="catalogo-container">
-            <!-- Filtros -->
-            <aside class="filtros">
-                <h3>Categorías</h3>
-                <ul>
-                    <li><a href="#">Hombres</a></li>
-                    <li><a href="#">Mujeres</a></li>
-                    <li><a href="#">Niños</a></li>
-                    <li><a href="#">Ofertas</a></li>
-                </ul>
-                <h3>Explorar por</h3>
-                <ul>
-                    <li><a href="#">Todos los productos</a></li>
-                </ul>
-                <h3>Filtrar por</h3>
-                <div class="filtro-precio">
-                    <label for="min-precio">Precio:</label>
-                    <div class="precio-inputs">
-                        <input type="number" id="min-precio" name="min-precio" placeholder="Mínimo">
-                        <input type="number" id="max-precio" name="max-precio" placeholder="Máximo">
+        <div class="filtro-color">
+            <h4>Color</h4>
+            <ul>
+                <li><input type="checkbox" id="negro"> <label for="negro">Negro</label></li>
+                <li><input type="checkbox" id="blanco"> <label for="blanco">Blanco</label></li>
+                <li><input type="checkbox" id="rojo"> <label for="rojo">Rojo</label></li>
+            </ul>
+        </div>
+        <div class="filtro-talla">
+            <h4>Talla</h4>
+            <select id="select-talla">
+                <option value="todos">Todos</option>
+                <option value="20">20</option>
+                <option value="22">22</option>
+                <option value="24">24</option>
+                <option value="26">26</option>
+                <option value="28">28</option>
+                <option value="30">30</option>
+                <option value="32">32</option>
+                <option value="34">34</option>
+                <option value="36">36</option>
+                <option value="38">38</option>
+                <option value="40">40</option>
+                <option value="42">42</option>
+            </select>
+        </div>
+        <button class="aplicar-filtros" onclick="applyFilters()">Aplicar filtros</button>
+    </aside>
+
+    <!-- Productos -->
+    <section class="productos">
+        <div class="grid-productos">
+            <div class="producto" data-colores="negro,rojo,blanco" data-tallas="20,22,24,26,28,30,32,34,36,38,40,42">
+                <a href="producto1.html" class="product-link">
+                    <img src="ChanclasNike.jpeg" alt="Producto 1">
+                    <h4>Chanclas Nike</h4>
+                    <p>$120,000</p>
+                    <!-- Disponibilidad de color -->
+                    <div class="product-icons">
+                        <span class="color-icon" style="background-color: black;" title="Negro"></span>
+                        <span class="color-icon" style="background-color: red;" title="Rojo"></span>
+                        <span class="color-icon" style="background-color: white;" title="Blanco"></span>
                     </div>
-                </div>
-                <div class="filtro-color">
-                    <h4>Color</h4>
-                    <ul>
-                        <li><input type="checkbox" id="negro"> <label for="negro">Negro</label></li>
-                        <li><input type="checkbox" id="blanco"> <label for="blanco">Blanco</label></li>
-                        <li><input type="checkbox" id="rojo"> <label for="rojo">Rojo</label></li>
-                    </ul>
-                </div>
-                <div class="filtro-talla">
-                    <h4>Talla</h4>
-                    <ul>
-                        <li><input type="checkbox" id="30"> <label for="30">30</label></li>
-                        <li><input type="checkbox" id="32"> <label for="32">32</label></li>
-                        <li><input type="checkbox" id="34"> <label for="34">34</label></li>
-                        <li><input type="checkbox" id="36"> <label for="36">36</label></li>
-                        <li><input type="checkbox" id="38"> <label for="38">38</label></li>
-                        <li><input type="checkbox" id="40"> <label for="40">40</label></li>
-                        <li><input type="checkbox" id="42"> <label for="42">42</label></li>
-                    </ul>
-                </div>
-                <button class="aplicar-filtros">Aplicar filtros</button>
-            </aside>
-        
-            <!-- Productos -->
-            <section class="productos">
-                <h2>Todos los productos</h2>
-                <div class="grid-productos">
-                    <!-- Producto 1 -->
-                    <div class="producto">
-                        <a href="producto1.html">
-                            <img src="producto1.jpg" alt="Producto 1">
-                            <h4>Producto 1</h4>
-                            <p>$120.000</p>
-                        </a>
-                    </div>
-                    <!-- Producto 2 -->
-                    <div class="producto">
-                        <a href="producto2.html">
-                            <img src="producto2.jpg" alt="Producto 2">
-                            <h4>Producto 2</h4>
-                            <p>$150.000</p>
-                        </a>
-                    </div>
-                    <!-- Producto 3 -->
-                    <div class="producto">
-                        <a href="producto3.html">
-                            <img src="producto3.jpg" alt="Producto 3">
-                            <h4>Producto 3</h4>
-                            <p>$180.000</p>
-                        </a>
-                    </div>
-                    <!-- Producto 4 -->
-                    <div class="producto">
-                        <a href="producto4.html">
-                            <img src="producto4.jpg" alt="Producto 4">
-                            <h4>Producto 4</h4>
-                            <p>$200.000</p>
-                        </a>
-                    </div>
-                </div>
-            </section>
-        </main>
-        
-        <!-- Footer -->
-        <footer>
-            <div class="footer-container">
-                <p>CalzadoCalidoso &copy; 2025</p>
+                    <!-- Rango de tallas -->
+                    <p class="available-sizes">Tallas disponibles: 20 - 42</p>
+                </a>
             </div>
-        </footer>
-        
-        <!-- Scripts necesarios -->
-        <script>
-            // Comprobación del funcionamiento del carrito flotante
-            document.querySelector('.carrito-flotante a').addEventListener('click', function(event) {
-                event.preventDefault();
-                alert('Carrito funcional! Redirigiendo a carrito.html...');
-                window.location.href = 'carrito.html';
-            });
-        </script>
-        
-        </body>
-        </html>
-        
+            
+            <!-- Producto 2 -->
+            <div class="producto" data-colores="rojo" data-tallas="30,32,34,36,38,40,42">
+                <a href="producto2.html" class="product-link">
+                    <img src="producto2.jpg" alt="Producto 2">
+                    <h4>Producto 2</h4>
+                    <p>$150,000</p>
+                    <!-- Disponibilidad de color -->
+                    <div class="product-icons">
+                        <span class="color-icon" style="background-color: red;" title="Rojo"></span>
+                    </div>
+                    <!-- Rango de tallas -->
+                    <p class="available-sizes">Tallas disponibles: 30 - 42</p>
+                </a>
+            </div>
+
+            <!-- Producto 3 -->
+            <div class="producto" data-colores="blanco" data-tallas="20,22,24,26,28,30,32,34,36,38,40,42">
+                <a href="producto3.html" class="product-link">
+                    <img src="producto3.jpg" alt="Producto 3">
+                    <h4>Producto 3</h4>
+                    <p>$180,000</p>
+                    <!-- Disponibilidad de color -->
+                    <div class="product-icons">
+                        <span class="color-icon" style="background-color: white;" title="Blanco"></span>
+                    </div>
+                    <!-- Rango de tallas -->
+                    <p class="available-sizes">Tallas disponibles: 20 - 42</p>
+                </a>
+            </div>
+
+            <!-- Producto 4 -->
+            <div class="producto" data-colores="negro,blanco" data-tallas="20,22,24,26,28,30,32,34,36,38,40,42">
+                <a href="producto4.html" class="product-link">
+                    <img src="producto4.jpg" alt="Producto 4">
+                    <h4>Producto 4</h4>
+                    <p>$200,000</p>
+                    <!-- Disponibilidad de color -->
+                    <div class="product-icons">
+                        <span class="color-icon" style="background-color: black;" title="Negro"></span>
+                        <span class="color-icon" style="background-color: white;" title="Blanco"></span>
+                    </div>
+                    <!-- Rango de tallas -->
+                    <p class="available-sizes">Tallas disponibles: 20 - 42</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mensaje si no hay productos disponibles -->
+    <div id="no-products-message" style="display: none;">
+        <p>No hay productos disponibles para los filtros seleccionados.</p>
+    </div>
+</main>
+
+<!-- Footer -->
+<footer>
+    <div class="footer-container">
+        <p>CalzadoCalidoso &copy; 2025</p>
+    </div>
+</footer>
+
+<!-- Script de funcionalidad -->
+<script src="scripts.js"></script>
+
+</body>
+</html>
