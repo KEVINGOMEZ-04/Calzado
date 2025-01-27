@@ -61,6 +61,7 @@ function generateOrderCode() {
         .map(item => `${item.productName}-${item.price.toFixed(2)}`)
         .join("|");
 }
+
 function applyFilters() {
     // Obtener los valores de los filtros
     const minPrice = parseInt(document.getElementById('min-precio').value || '0', 10);
@@ -81,7 +82,7 @@ function applyFilters() {
     // Filtrar productos
     products.forEach(product => {
         const priceElement = product.querySelector('p');
-        const price = priceElement ? parseInt(priceElement.textContent.replace(/[^0-9]/g, ''), 10) : 0; // Eliminar comas y convertir a número
+        const price = priceElement ? parseInt(priceElement.textContent.replace(/[^0-9]/g, ''), 10) : 0;
         const colors = product.dataset.colores ? product.dataset.colores.split(',') : [];
         const sizes = product.dataset.tallas ? product.dataset.tallas.split(',') : [];
 
@@ -93,7 +94,7 @@ function applyFilters() {
         // Mostrar u ocultar productos según los filtros
         if (matchesPrice && matchesColor && matchesSize) {
             product.style.display = 'block';
-            foundProducts = true; // Si encontramos productos que coinciden
+            foundProducts = true;
         } else {
             product.style.display = 'none';
         }
@@ -101,10 +102,5 @@ function applyFilters() {
 
     // Mostrar el mensaje si no hay productos
     const noProductsMessage = document.getElementById('no-products-message');
-    if (foundProducts) {
-        noProductsMessage.style.display = 'none'; // Ocultar mensaje si hay productos
-    } else {
-        noProductsMessage.style.display = 'block'; // Mostrar mensaje si no hay productos
-    }
+    noProductsMessage.style.display = foundProducts ? 'none' : 'block';
 }
-
