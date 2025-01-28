@@ -122,3 +122,16 @@ function applyFilters() {
     const noProductsMessage = document.getElementById('no-products-message');
     noProductsMessage.style.display = foundProducts ? 'none' : 'block';
 }
+
+// scripts.js
+document.addEventListener('DOMContentLoaded', function () {
+    // Obtener el ícono de hamburguesa y el menú
+    const hamburger = document.getElementById('hamburger-icon');
+    const navbarMenu = document.getElementById('navbar-menu');
+
+    // Agregar un evento de clic al ícono de hamburguesa
+    hamburger.addEventListener('click', () => {
+        // Alternamos la clase 'active' para mostrar u ocultar el menú
+        navbarMenu.classList.toggle('active');
+    });
+});
