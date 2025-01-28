@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adidas Continental - Detalles del Producto</title>
     <link rel="stylesheet" href="estilos_pagina_principal.css">
-    <link rel="stylesheet" href="estilos_catalogo.css">
     <style>
+        /* Diseño principal del producto */
         .producto-detalle {
             display: flex;
             flex-wrap: wrap;
@@ -36,17 +36,18 @@
         }
 
         .producto-detalle .info h1 {
-            font-size: 2rem;
-            color: #333;
+            font-size: 2.5rem;
+            color: #1E3A8A;
         }
 
         .producto-detalle .info p {
             font-size: 1.2rem;
             color: #555;
+            line-height: 1.6;
         }
 
         .producto-detalle .info .precio {
-            font-size: 1.8rem;
+            font-size: 2rem;
             font-weight: bold;
             color: #d4af37;
         }
@@ -58,7 +59,7 @@
         }
 
         .producto-detalle .info .botones button {
-            padding: 0.8rem 1.5rem;
+            padding: 1rem 1.5rem;
             font-size: 1rem;
             font-weight: bold;
             color: white;
@@ -73,21 +74,92 @@
             background-color: #142c71;
         }
 
-        .producto-detalle .info .botones .carrito {
-            background-color: #d4af37;
+        /* Estilo uniforme de selección */
+        .producto-detalle .info select,
+        .color-options .color {
+            border: 2px solid transparent;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .producto-detalle .info .botones .carrito:hover {
-            background-color: #c89e35;
+        .producto-detalle .info select.selected,
+        .color-options .color.selected {
+            border-color: #1E3A8A;
+            box-shadow: 0 0 8px rgba(30, 58, 138, 0.5);
         }
 
-        .producto-detalle .info select {
-            padding: 0.5rem;
-            font-size: 1rem;
-            border: 1px solid #ccc;
-            border-radius: 5px;
+        .color-options {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .color-options .color {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .color-options .color[data-color="blanco"] {
+            background-color: white;
+            border: 2px solid #ccc;
+            position: relative;
+        }
+
+        .color-options .color[data-color="blanco"]::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 30px;
+            height: 30px;
+            background-color: #666;
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background-color: #f4f4f4;
+            color: #555;
+            margin-top: 2rem;
+        }
+
+        footer p {
+            margin: 0;
         }
     </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Función básica para simular agregar al carrito
+            const comprarBtn = document.querySelector("button");
+            comprarBtn.addEventListener("click", () => {
+                const talla = document.getElementById("talla").value;
+                const color = document.querySelector(".color.selected")?.dataset.color || "sin seleccionar";
+                const genero = document.getElementById("genero").value;
+                alert(`Producto agregado:\nTalla: ${talla}\nColor: ${color}\nGénero: ${genero}`);
+            });
+
+            // Selección de color con contorno uniforme
+            const colores = document.querySelectorAll(".color");
+            colores.forEach(color => {
+                color.addEventListener("click", () => {
+                    colores.forEach(c => c.classList.remove("selected"));
+                    color.classList.add("selected");
+                });
+            });
+
+            // Selección de talla y género con contorno uniforme
+            const selects = document.querySelectorAll("select");
+            selects.forEach(select => {
+                select.addEventListener("change", () => {
+                    selects.forEach(s => s.classList.remove("selected"));
+                    select.classList.add("selected");
+                });
+            });
+        });
+    </script>
 </head>
 <body>
 
@@ -111,6 +183,7 @@
         <a href="https://www.x.com/"><img src="X.png" alt="Twitter"></a>
     </div>
 </header>
+
 
 <!-- Detalles del Producto -->
 <main>
@@ -140,14 +213,20 @@
                     <option value="42">42</option>
                 </select>
 
-                <label for="color">Selecciona el color:</label>
-                <select id="color">
-                    <option value="negro">Negro</option>
-                    <option value="rojo">Rojo</option>
-                    <option value="blanco">Blanco</option>
+                <label for="genero">Selecciona el género:</label>
+                <select id="genero">
+                    <option value="hombre">Hombre</option>
+                    <option value="mujer">Mujer</option>
                 </select>
 
-                <button class="carrito">Agregar al Carrito</button>
+                <label for="color">Selecciona el color:</label>
+                <div class="color-options">
+                    <div class="color" data-color="negro" style="background-color: black;"></div>
+                    <div class="color" data-color="rojo" style="background-color: red;"></div>
+                    <div class="color" data-color="blanco" style="background-color: white;"></div>
+                </div>
+
+                <button>Comprar Ahora</button>
             </div>
         </div>
     </section>
@@ -155,9 +234,7 @@
 
 <!-- Footer -->
 <footer>
-    <div class="footer-container">
-        <p>CalzadoCalidoso &copy; 2025</p>
-    </div>
+    <p>CalzadoCalidoso &copy; 2025</p>
 </footer>
 
 </body>
