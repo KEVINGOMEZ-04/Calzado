@@ -20,7 +20,6 @@ body {
     background-color: #000000;
     color: white;
     padding: 10px 20px;
-    flex-wrap: wrap;
 }
 
 .navbar-logo {
@@ -68,6 +67,47 @@ body {
 .navbar-icons img {
     width: 24px;
     height: 24px;
+}
+
+/* Estilos del ícono de hamburguesa */
+.navbar-hamburger {
+    display: none; /* Ocultar en pantallas grandes */
+    cursor: pointer;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.navbar-hamburger .bar {
+    width: 30px;
+    height: 4px;
+    background-color: white;
+    border-radius: 5px;
+}
+
+/* Estilos para pantallas pequeñas */
+@media (max-width: 768px) {
+    .navbar-hamburger {
+        display: flex; /* Mostrar el ícono de hamburguesa en móviles */
+    }
+
+    .navbar-menu {
+        display: none; /* Ocultar el menú por defecto en móviles */
+        flex-direction: column;
+        gap: 10px;
+        position: absolute;
+        top: 60px; /* Ajusta según la altura de tu navbar */
+        right: 20px;
+        background-color: #000;
+        width: 200px;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        z-index: 1000; /* Asegura que el menú esté por encima de otros elementos */
+    }
+
+    .navbar-menu.active {
+        display: flex; /* Mostrar el menú cuando tiene la clase 'active' */
+    }
 }
 
 /* Banner */
@@ -286,147 +326,4 @@ footer {
 
 .footer-contact {
     font-size: 0.9em;
-}
-
-/* Media Queries */
-@media (max-width: 768px) {
-    .navbar-menu {
-        display: none; /* Ocultar menú en pantallas pequeñas */
-        width: 100%;
-        flex-direction: column;
-        align-items: center;
-        background-color: #000;
-    }
-
-    .navbar-menu li {
-        margin: 10px 0;
-    }
-
-    .navbar-logo {
-        font-size: 1.5em;
-    }
-
-    .banner h1 {
-        font-size: 2em;
-    }
-
-    .banner p {
-        font-size: 1em;
-    }
-
-    .about-store {
-        flex-direction: column;
-        align-items: center;
-        padding: 20px;
-    }
-
-    .about-store-img {
-        margin-bottom: 20px;
-    }
-
-    .about-store-text {
-        margin-left: 0;
-    }
-
-    .product-slider {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .product-item {
-        width: 90%;
-        margin-bottom: 20px;
-    }
-
-    .store-video iframe {
-        width: 100%;
-        max-width: 90%;
-    }
-
-    .footer-container {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-
-    .footer-menu {
-        flex-direction: column;
-        align-items: center;
-    }
-}
-
-@media (max-width: 480px) {
-    .navbar-logo {
-        font-size: 1.2em;
-    }
-
-    .navbar-icons img {
-        width: 20px;
-        height: 20px;
-    }
-
-    .banner h1 {
-        font-size: 1.8em;
-    }
-
-    .banner p {
-        font-size: 0.9em;
-    }
-
-    .best-sellers h2 {
-        font-size: 1.8em;
-    }
-
-    .product-item {
-        width: 90%; /* Ajustar el tamaño de los productos */
-    }
-
-    .store-video h2 {
-        font-size: 2em;
-    }
-
-    .video-container iframe {
-        height: 350px;
-    }
-}
-
-/* Estilo del ícono de hamburguesa */
-.navbar-hamburger {
-    display: none;  /* Ocultamos el ícono en pantallas grandes */
-    cursor: pointer;
-    flex-direction: column;
-    gap: 5px;
-}
-
-.navbar-hamburger .bar {
-    width: 30px;
-    height: 4px;
-    background-color: white;
-    border-radius: 5px;
-}
-
-@media (max-width: 768px) {
-    /* Ocultamos el menú de navegación en pantallas pequeñas */
-    .navbar-menu {
-        display: none;
-        flex-direction: column;
-        gap: 10px;
-        position: absolute;
-        top: 60px;
-        right: 20px;
-        background-color: #000;
-        width: 200px;
-        padding: 10px;
-        border-radius: 5px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-    }
-
-    .navbar-menu.active {
-        display: flex;  /* Mostramos el menú cuando tiene la clase 'active' */
-    }
-
-    /* Mostramos el ícono de hamburguesa en pantallas pequeñas */
-    .navbar-hamburger {
-        display: flex;
-    }
 }
