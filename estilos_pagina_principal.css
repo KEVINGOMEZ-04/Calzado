@@ -222,7 +222,7 @@ body {
     transform: scale(1.05);
 }
 
-/* About Store */
+/* Sección sobre la tienda */
 .about-store {
     display: flex;
     flex-wrap: wrap;
@@ -233,16 +233,21 @@ body {
     margin-top: 30px;
 }
 
+.about-store-img {
+    flex: 1; /* La imagen ocupa 1 parte del espacio disponible */
+    max-width: 50%; /* La imagen no debe ocupar más del 50% del ancho */
+}
+
 .about-store-img img {
     width: 100%;
-    max-width: 500px;
     height: auto;
     border-radius: 10px;
 }
 
 .about-store-text {
-    max-width: 500px;
-    margin-left: 30px;
+    flex: 1; /* El texto ocupa 1 parte del espacio disponible */
+    max-width: 50%; /* El texto no debe ocupar más del 50% del ancho */
+    margin-left: 30px; /* Espacio entre la imagen y el texto */
 }
 
 .about-store-text h2 {
@@ -255,6 +260,23 @@ body {
     font-size: 1.1em;
     color: #555;
     line-height: 1.6;
+}
+
+/* Estilos para pantallas pequeñas */
+@media (max-width: 768px) {
+    .about-store {
+        flex-direction: column; /* Cambia a columna en pantallas pequeñas */
+    }
+
+    .about-store-img,
+    .about-store-text {
+        max-width: 100%; /* Ocupa el 100% del ancho en pantallas pequeñas */
+        margin-left: 0; /* Elimina el margen izquierdo en pantallas pequeñas */
+    }
+
+    .about-store-text {
+        margin-top: 20px; /* Espacio entre la imagen y el texto en pantallas pequeñas */
+    }
 }
 
 /* Store Video */
@@ -326,4 +348,26 @@ footer {
 
 .footer-contact {
     font-size: 0.9em;
+}
+
+/* Botón de Volver arriba */
+.back-to-top {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: orange;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+}
+
+.back-to-top:hover {
+    background-color: #e68900;
 }
