@@ -11,9 +11,11 @@ const cartTotal = document.getElementById("cart-total");
 const checkoutBtn = document.getElementById("checkout-btn");
 
 // Toggle carrito
-cartIcon.addEventListener("click", () => {
-    cartContainer.classList.toggle("hidden");
-});
+if (cartIcon && cartContainer) {
+    cartIcon.addEventListener("click", () => {
+        cartContainer.classList.toggle("hidden");
+    });
+}
 
 // Añadir producto al carrito
 function addToCart(productName, price) {
@@ -24,18 +26,20 @@ function addToCart(productName, price) {
 
 // Actualizar carrito
 function updateCart() {
-    cartItemsContainer.innerHTML = ""; // Limpiar lista
-    cartItems.forEach((item, index) => {
-        const li = document.createElement("li");
-        li.innerHTML = `
-            ${item.productName} - $${item.price.toFixed(2)}
-            <button onclick="removeFromCart(${index})">X</button>
-        `;
-        cartItemsContainer.appendChild(li);
-    });
+    if (cartItemsContainer && cartTotal && cartCount) {
+        cartItemsContainer.innerHTML = ""; // Limpiar lista
+        cartItems.forEach((item, index) => {
+            const li = document.createElement("li");
+            li.innerHTML = `
+                ${item.productName} - $${item.price.toFixed(2)}
+                <button onclick="removeFromCart(${index})">X</button>
+            `;
+            cartItemsContainer.appendChild(li);
+        });
 
-    cartTotal.textContent = total.toFixed(2);
-    cartCount.textContent = cartItems.length;
+        cartTotal.textContent = total.toFixed(2);
+        cartCount.textContent = cartItems.length;
+    }
 }
 
 // Eliminar producto del carrito
@@ -46,14 +50,16 @@ function removeFromCart(index) {
 }
 
 // Finalizar compra
-checkoutBtn.addEventListener("click", () => {
-    const orderCode = generateOrderCode();
-    alert(`Código de pedido: ${orderCode}`);
-    navigator.clipboard.writeText(orderCode); // Copiar al portapapeles
-    cartItems = [];
-    total = 0.0;
-    updateCart();
-});
+if (checkoutBtn) {
+    checkoutBtn.addEventListener("click", () => {
+        const orderCode = generateOrderCode();
+        alert(`Código de pedido: ${orderCode}`);
+        navigator.clipboard.writeText(orderCode); // Copiar al portapapeles
+        cartItems = [];
+        total = 0.0;
+        updateCart();
+    });
+}
 
 // Generar código de pedido
 function generateOrderCode() {
@@ -62,6 +68,7 @@ function generateOrderCode() {
         .join("|");
 }
 
+// Aplicar filtros
 function applyFilters() {
     // Obtener los valores de los filtros
     const minPrice = parseInt(document.getElementById('min-precio').value || '0', 10);
@@ -99,8 +106,16 @@ function applyFilters() {
             product.style.display = 'none';
         }
     });
-    function resetFilters() {
-        
+
+    // Mostrar el mensaje si no hay productos
+    const noProductsMessage = document.getElementById('no-products-message');
+    if (noProductsMessage) {
+        noProductsMessage.style.display = foundProducts ? 'none' : 'block';
+    }
+}
+
+// Reiniciar filtros
+function resetFilters() {
     // Limpiar campos de los filtros
     document.getElementById('min-precio').value = '';
     document.getElementById('max-precio').value = '';
@@ -114,24 +129,32 @@ function applyFilters() {
     });
 
     // Ocultar el mensaje de no productos
-    document.getElementById('no-products-message').style.display = 'none';
-}
-
-
- // Mostrar el mensaje si no hay productos
     const noProductsMessage = document.getElementById('no-products-message');
-    noProductsMessage.style.display = foundProducts ? 'none' : 'block';
+    if (noProductsMessage) {
+        noProductsMessage.style.display = 'none';
+    }
 }
 
-// scripts.js
+// Menú hamburguesa
 document.addEventListener('DOMContentLoaded', function () {
     // Obtener el ícono de hamburguesa y el menú
     const hamburger = document.getElementById('hamburger-icon');
     const navbarMenu = document.getElementById('navbar-menu');
 
-    // Agregar un evento de clic al ícono de hamburguesa
-    hamburger.addEventListener('click', () => {
-        // Alternamos la clase 'active' para mostrar u ocultar el menú
-        navbarMenu.classList.toggle('active');
-    });
+    // Verificar si los elementos existen antes de agregar el evento
+    if (hamburger && navbarMenu) {
+        hamburger.addEventListener('click', () => {
+            console.log("Ícono de hamburguesa clickeado"); // Depuración
+            navbarMenu.classList.toggle('active');
+        });
+
+        // Cerrar el menú al hacer clic fuera de él
+        document.addEventListener('click', (event) => {
+            if (!navbarMenu.contains(event.target) && !hamburger.contains(event.target)) {
+                navbarMenu.classList.remove('active');
+            }
+        });
+    } else {
+        console.error("No se encontró el ícono de hamburguesa o el menú.");
+    }
 });
