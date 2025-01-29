@@ -158,3 +158,18 @@ document.addEventListener('DOMContentLoaded', function () {
         console.error("No se encontró el ícono de hamburguesa o el menú.");
     }
 });
+
+// Botón de Volver arriba
+const backToTopButton = document.getElementById('back-to-top');
+
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+        backToTopButton.style.display = 'block';
+    } else {
+        backToTopButton.style.display = 'none';
+    }
+});
+
+backToTopButton.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+});
