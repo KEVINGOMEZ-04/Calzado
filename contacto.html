@@ -3,32 +3,352 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catálogo - CalzadoCalidoso</title>
+    <title>Contacto - CalzadoCalidoso</title>
     <link rel="stylesheet" href="estilos_pagina_principal.css">
     <link rel="stylesheet" href="estilos_catalogo.css">
+    <style>
+        :root {
+            --primary: #1E3A8A;
+            --primary-hover: #0F2C6B;
+            --light: #ffffff;
+            --dark: #1F2937;
+            --gray: #F3F4F6;
+            --radius: 10px;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: var(--gray);
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #000000;
+            color: white;
+            padding: 10px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.8em;
+            font-weight: 600;
+            color: white;
+        }
+
+        .navbar-logo img {
+            width: 40px;
+            height: 40px;
+        }
+
+        .navbar-logo span {
+            color: orange;
+        }
+
+        .navbar-menu {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+            margin-left: 20px;
+            align-items: center;
+        }
+
+        .navbar-menu li a {
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-menu li a:hover {
+            color: orange;
+        }
+
+        .navbar-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .navbar-icons img {
+            width: 28px;
+            height: 28px;
+            transition: transform 0.3s ease;
+        }
+
+        .navbar-icons img:hover {
+            transform: scale(1.1);
+        }
+
+        .navbar-hamburger {
+            display: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .navbar-hamburger .bar {
+            width: 30px;
+            height: 4px;
+            background-color: white;
+            border-radius: 5px;
+        }
+
+        @media (max-width: 1024px) {
+            .navbar-hamburger {
+                display: flex;
+            }
+
+            .navbar-menu {
+                display: none;
+                flex-direction: column;
+                gap: 10px;
+                position: absolute;
+                top: 70px;
+                right: 10px;
+                background-color: rgba(0, 0, 0, 0.9);
+                width: 200px;
+                padding: 15px;
+                border-radius: 5px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+                z-index: 1000;
+            }
+
+            .navbar-menu.active {
+                display: flex;
+            }
+
+            .navbar-menu li a {
+                font-size: 1em;
+            }
+
+            .navbar-icons {
+                display: none;
+            }
+        }
+
+        .contact-section {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 20px;
+            background-color: var(--light);
+            border-radius: var(--radius);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-container {
+            flex: 1;
+            margin-right: 2rem;
+        }
+
+        .contact-container h1 {
+            font-size: 2.5em;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+
+        .contact-container p {
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 2rem;
+        }
+
+        .contact-form .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-form label {
+            display: block;
+            font-size: 1em;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: var(--radius);
+            font-size: 1em;
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+        }
+
+        .contact-form .btn {
+            width: 100%;
+            padding: 15px;
+            background-color: var(--primary);
+            color: var(--light);
+            border: none;
+            border-radius: var(--radius);
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .contact-form .btn:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .contact-info {
+            flex: 1;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: var(--radius);
+        }
+
+        .contact-info h2 {
+            font-size: 2em;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+
+        .contact-info ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .contact-info ul li {
+            margin-bottom: 1rem;
+            font-size: 1em;
+            color: #555;
+        }
+
+        .contact-info ul li strong {
+            color: var(--dark);
+        }
+
+        .contact-info ul li a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-info ul li a:hover {
+            color: var(--primary-hover);
+        }
+
+        .contact-info ul li img {
+            width: 20px;
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+
+        footer {
+            background-color: #000000;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-logo {
+            font-size: 1.5em;
+            font-weight: 600;
+        }
+
+        .footer-logo span {
+            color: orange;
+        }
+
+        .footer-menu {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-menu li a {
+            text-decoration: none;
+            color: white;
+            font-size: 0.9em;
+            transition: color 0.3s ease;
+        }
+
+        .footer-menu li a:hover {
+            color: orange;
+        }
+
+        .footer-contact {
+            font-size: 0.9em;
+            color: #999;
+        }
+
+        @media (max-width: 768px) {
+            .contact-section {
+                flex-direction: column;
+                padding: 15px;
+            }
+
+            .contact-container {
+                margin-right: 0;
+                margin-bottom: 2rem;
+            }
+
+            .contact-info {
+                padding: 15px;
+            }
+
+            .footer-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-menu {
+                flex-direction: column;
+                gap: 10px;
+                margin: 10px 0;
+            }
+        }
+    </style>
 </head>
 <body>
 
-<!-- Navbar -->
-<header class="navbar">
-    <div class="navbar-logo">
-        <img src="logo.png" alt="Logo de la Tienda">
-        <span>CalzadoCalidoso</span>
-    </div>
-    <ul class="navbar-menu">
-        <li><a href="index.html">Inicio</a></li>
-        <li><a href="catalogo.html">Catálogo</a></li>
-        <li><a href="#">Nosotros</a></li>
-        <li><a href="contacto.html">Contactos</a></li>
-        <li><a href="#">FAQ</a></li>
-        <li><a href="#">Política de envíos</a></li>
-    </ul>
-    <div class="navbar-icons">
-        <a href="https://www.facebook.com/"><img src="facebook.png" alt="Facebook"></a>
-        <a href="https://www.instagram.com/"><img src="instagram.png" alt="Instagram"></a>
-        <a href="https://www.x.com/"><img src="X.png" alt="Twitter"></a>
-    </div>
-</header>
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="navbar-logo">
+            <img src="logo.png" alt="Logo de la Tienda">
+            <span>CalzadoCalidoso</span>
+        </div>
+        <ul class="navbar-menu" id="navbar-menu">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="catalogo.html">Catálogo</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li><a href="contacto.html">Contáctanos</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Política de envíos</a></li>
+        </ul>
+        <div class="navbar-icons">
+            <a href="https://www.facebook.com/"><img src="facebook.png" alt="Facebook"></a>
+            <a href="https://www.instagram.com/"><img src="instagram.png" alt="Instagram"></a>
+            <a href="https://www.x.com/"><img src="X.png" alt="Twitter"></a>
+        </div>
+        <div class="navbar-hamburger" id="hamburger-icon">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+    </header>
 
     <!-- Sección de Contacto -->
     <section class="contact-section">
@@ -60,7 +380,7 @@
                 <li>
                     <strong>Dirección:</strong>
                     <a href="https://maps.app.goo.gl/H5GciRVLe59gK6oQ9" target="_blank">
-                        <img src="ubicacion-icono.png" alt="Ubicación" style="width: 20px; vertical-align: middle;">
+                        <img src="ubicacion-icono.png" alt="Ubicación">
                         Centro Comercial Papatos, Cali, Colombia
                     </a>
                 </li>
@@ -82,10 +402,19 @@
                 <li><a href="#">Política de cookies</a></li>
             </ul>
             <div class="footer-contact">
-                <p style="color: #999;">Espacio reservado</p>
+                <p>© 2025 CalzadoCalidoso - Todos los derechos reservados</p>
             </div>
         </div>
     </footer>
 
+    <script>
+        // Script para el menú hamburguesa
+        const hamburgerIcon = document.getElementById('hamburger-icon');
+        const navbarMenu = document.getElementById('navbar-menu');
+
+        hamburgerIcon.addEventListener('click', () => {
+            navbarMenu.classList.toggle('active');
+        });
+    </script>
 </body>
 </html>
