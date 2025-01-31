@@ -1,0 +1,115 @@
+/* Variables CSS */
+:root {
+    --color-primario: #1E3A8A;
+    --color-secundario: #d4af37;
+    --color-fondo: #f8f9fa;
+    --sombra: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Diseño Responsive Mobile-First */
+.producto-detalle {
+    display: grid;
+    gap: 2rem;
+    padding: 1rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.producto-galeria {
+    order: 1;
+}
+
+.producto-info {
+    order: 2;
+}
+
+/* Selectores Adaptables */
+.talla-selector .tallas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+    gap: 0.5rem;
+}
+
+.talla-selector button {
+    padding: 0.8rem;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    background: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.talla-selector button[aria-pressed="true"] {
+    border-color: var(--color-primario);
+    background: var(--color-primario);
+    color: white;
+}
+
+/* Mejoras de Accesibilidad */
+.color-selector button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    padding: 3px;
+}
+
+.color-selector button[aria-pressed="true"] {
+    border: 2px solid var(--color-primario);
+}
+
+/* Media Queries para Desktop */
+@media (min-width: 768px) {
+    .producto-detalle {
+        grid-template-columns: 1fr 1fr;
+        padding: 2rem;
+    }
+    
+    .producto-galeria {
+        position: sticky;
+        top: 1rem;
+        align-self: start;
+    }
+}
+
+/* Optimización para Pantallas Grandes */
+@media (min-width: 1200px) {
+    .producto-info {
+        padding: 0 3rem;
+    }
+}
+
+/* Mejoras de Rendimiento */
+img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
+    border-style: none;
+}
+
+[loading="lazy"] {
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+/* Correcciones específicas para página de producto */
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.producto-detalle {
+    margin-top: 80px; /* Espacio para navbar fijo */
+}
+
+/* Ajustes para menú en móviles */
+@media (max-width: 768px) {
+    .navbar-menu {
+        top: 60px; /* Posición relativa al logo */
+        right: 15px;
+        width: 70%;
+    }
+    
+    .producto-detalle {
+        margin-top: 20px;
+    }
+}
