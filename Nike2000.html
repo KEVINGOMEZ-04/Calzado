@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nike 2000  - Detalles del Producto</title>
+    <link rel="stylesheet" href="estilos_pagina_principal.css">
+    <link rel="stylesheet" href="estilos_catalogo.css">
+    <style>
+        :root {
+            --primary: #1E3A8A;
+            --primary-hover: #0F2C6B;
+            --light: #ffffff;
+            --dark: #1F2937;
+            --gray: #F3F4F6;
+            --radius: 10px;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: var(--gray);
+            margin: 0;
+            padding: 0;
+        }
+        
+        .producto-detalle {
+            display: flex;
+            max-width: 1200px;
+            margin: auto;
+            padding: 2rem;
+            background: var(--light);
+            border-radius: var(--radius);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .galeria {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .thumbnails {
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .thumbnails img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            cursor: pointer;
+            border-radius: var(--radius);
+            border: 2px solid transparent;
+        }
+        
+        .thumbnails img:hover {
+            border-color: var(--primary);
+        }
+        
+        .imagen-principal img {
+            width: 500px;
+            height: auto;
+            border-radius: var(--radius);
+        }
+        
+        .producto-info {
+            flex: 1;
+            padding-left: 2rem;
+        }
+        
+        h1 {
+            font-size: 2rem;
+            color: var(--dark);
+        }
+        
+        .precio {
+            font-size: 1.8rem;
+            color: var(--primary);
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+        
+        .precio-original {
+            text-decoration: line-through;
+            color: #666;
+            font-size: 1.2rem;
+        }
+        
+        .descuento {
+            color: green;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        
+        .talla-lista {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .talla-item {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: var(--radius);
+            cursor: pointer;
+            background-color: var(--light);
+        }
+        
+        .talla-item[disabled] {
+            text-decoration: line-through;
+            color: #ccc;
+            cursor: not-allowed;
+        }
+        
+        .talla-item.selected {
+            border-color: var(--primary);
+            background-color: var(--primary);
+            color: var(--light);
+        }
+        
+        .btn-carrito {
+            width: 100%;
+            padding: 15px;
+            background: var(--primary);
+            color: var(--light);
+            border: none;
+            border-radius: var(--radius);
+            font-size: 1.2rem;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+        
+        .btn-carrito:hover {
+            background: var(--primary-hover);
+        }
+        
+        .descripcion ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        .descripcion ul li {
+            font-size: 1rem;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+        
+        .pago-contra-entrega {
+            margin-top: 20px;
+            font-size: 1rem;
+            color: var(--dark);
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: var(--radius);
+            text-align: center;
+        }
+        
+        .color-circle {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 2px solid #ccc;
+        }
+        
+        .color-btn.selected .color-circle {
+            border: 3px solid var(--primary);
+        }
+        
+        @media (max-width: 768px) {
+            .producto-detalle {
+                flex-direction: column;
+                padding: 1rem;
+            }
+            .producto-info {
+                padding-left: 0;
+                margin-top: 1rem;
+            }
+            .imagen-principal img {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar Actualizado -->
+    <header class="navbar">
+        <div class="navbar-logo">
+            <img src="logo.png" alt="Logo CalzadoCalidoso">
+            <span>CalzadoCalidoso</span>
+        </div>
+    
+        <ul class="navbar-menu" id="navbar-menu">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="catalogo.html">Catálogo</a></li>
+            <li><a href="#">Nosotros</a></li>
+            <li><a href="contacto.html">Contactos</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Política de envíos</a></li>
+            <li class="social-icons">
+                <a href="https://www.facebook.com/"><img src="facebook.png" alt="Facebook"></a>
+                <a href="https://www.instagram.com/"><img src="instagram.png" alt="Instagram"></a>
+                <a href="https://www.x.com/"><img src="X.png" alt="Twitter"></a>
+            </li>
+        </ul>
+    
+        <div class="navbar-hamburger" id="hamburger-icon">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+    </header>
+    
+    <!-- Contenido Principal -->
+    <main class="producto-detalle">
+        <section class="galeria">
+            <div class="imagen-principal">
+                <img src="Nike2000.jpeg" alt="Adidas Continental">
+            </div>
+            <div class="thumbnails">
+                <img src="detalle1.jpg" alt="Detalle lateral">
+                <img src="detalle2.jpg" alt="Detalle superior">
+                <img src="detalle3.jpg" alt="Detalle suela">
+            </div>
+        </section>
+    
+        <section class="producto-info">
+            <h1>Nike 2000</h1>
+            <div class="precio">
+                <span>$140.000</span>
+            </div>
+    
+            <div class="selectores">
+                <div class="talla-selector">
+                    <h3>Selecciona tu talla:</h3>
+                    <div class="talla-lista">
+                        <button class="talla-item" data-talla="36">36</button>
+                        <button class="talla-item" data-talla="38">38</button>
+                        <button class="talla-item" data-talla="40" disabled>40</button>
+                        <button class="talla-item" data-talla="42">42</button>
+                    </div>
+                </div>
+    
+                <div class="color-selector">
+                    <h3>Elige tu color:</h3>
+                    <div class="colores">
+                        <button class="color-btn" data-color="negro">
+                            <div class="color-circle" style="background: #000"></div>
+                        </button>
+                        <button class="color-btn" data-color="blanco">
+                            <div class="color-circle" style="background: #FFF; border: 2px solid #000"></div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+    
+            <button class="btn-carrito" onclick="addToCart('Adidas Continental', 140000)">
+                🛒 Añadir al Carrito
+            </button>
+
+            <div class="pago-contra-entrega">
+                Disponible pago contra entrega solo en Cali
+            </div>
+    
+            <article class="descripcion">
+                <h2>Características destacadas</h2>
+                <ul>
+                    <li>Material superior en malla transpirable</li>
+                    <li>Suela de EVA ultraligera</li>
+                    <li>Plantilla OrthoLite® con amortiguación</li>
+                    <li>Peso total: 280 gramos</li>
+                    <li>Disponible en 3 colores clásicos</li>
+                </ul>
+            </article>
+        </section>
+    </main>
+    <footer class="site-footer">
+        <div class="footer-content">
+            <p>© 2025 CalzadoCalidoso - Todos los derechos reservados</p>
+            <nav>
+                <a href="#">Términos y condiciones</a>
+                <a href="#">Política de privacidad</a>
+                <a href="#">Soporte técnico</a>
+            </nav>
+        </div>
+    </footer>
+    
+    <!-- Carrito Flotante -->
+    <div class="carrito-flotante">
+        <div class="carrito-icono" onclick="toggleCarrito()">
+            🛒
+            <span class="carrito-contador">0</span>
+        </div>
+        
+        <div class="carrito-contenido">
+            <h3>Tu selección</h3>
+            <div class="carrito-items"></div>
+            <div class="carrito-total">
+                Total: $<span>0</span>
+            </div>
+            <button class="btn-comprar" onclick="finalizarCompra()">💬 Completar pedido</button>
+        </div>
+    </div>
+    
+    <script src="scripts.js"></script>
+    <script>
+        // Inicialización de selectores
+        document.querySelectorAll('.talla-item:not([disabled])').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.talla-item').forEach(t => t.classList.remove('selected'));
+                this.classList.add('selected');
+            });
+        });
+    
+        document.querySelectorAll('.color-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.color-btn').forEach(c => c.classList.remove('selected'));
+                this.classList.add('selected');
+            });
+        });
+    </script>
+</body>
+</html>
