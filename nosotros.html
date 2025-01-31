@@ -1,33 +1,393 @@
-<!DOCTYPE html>  
-<html lang="es">  
-<head>  
-    <meta charset="UTF-8">  
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-    <title>Nosotros - CalzadoCalidoso</title>  
-    <link rel="stylesheet" href="css/styles.css">  
-</head>  
-<body>  
-    <header>  
-        <nav>  
-            <ul class="navbar">  
-                <li><a href="index.html">Inicio</a></li>  
-                <li><a href="catalogo.html">Catálogo</a></li>  
-                <li><a href="nosotros.html">Nosotros</a></li>  
-                <li><a href="contacto.html">Contactos</a></li>  
-                <li><a href="faq.html">FAQ</a></li>  
-                <li><a href="politica.html">Política de envíos y devoluciones</a></li>  
-            </ul>  
-            <div class="cart-icon">  
-                <img src="https://img.icons8.com/material-outlined/24/ffffff/shopping-cart.png" alt="Carrito de Compras">  
-                <span class="cart-count">0</span>  
-            </div>  
-        </nav>  
-    </header>  
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nosotros - CalzadoCalidoso</title>
+    <link rel="stylesheet" href="estilos_pagina_principal.css">
+    <style>
+        /* Estilos específicos para la página "Nosotros" */
+        :root {
+            --primary: #1E3A8A;
+            --primary-hover: #0F2C6B;
+            --light: #ffffff;
+            --dark: #1F2937;
+            --gray: #F3F4F6;
+            --radius: 10px;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: var(--gray);
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #000000;
+            color: white;
+            padding: 10px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.8em;
+            font-weight: 600;
+            color: white;
+        }
+
+        .navbar-logo img {
+            width: 40px;
+            height: 40px;
+        }
+
+        .navbar-logo span {
+            color: orange;
+        }
+
+        .navbar-menu {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+            margin-left: 20px;
+            align-items: center;
+        }
+
+        .navbar-menu li a {
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-menu li a:hover {
+            color: orange;
+        }
+
+        .navbar-menu .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-left: 20px;
+        }
+
+        .navbar-menu .social-icons a {
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        .navbar-menu .social-icons a:hover {
+            transform: scale(1.1);
+        }
+
+        .navbar-menu .social-icons img {
+            width: 28px;
+            height: 28px;
+        }
+
+        .navbar-hamburger {
+            display: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .navbar-hamburger .bar {
+            width: 30px;
+            height: 4px;
+            background-color: white;
+            border-radius: 5px;
+        }
+
+        @media (max-width: 1024px) {
+            .navbar-hamburger {
+                display: flex;
+            }
+
+            .navbar-menu {
+                display: none;
+                flex-direction: column;
+                gap: 10px;
+                position: absolute;
+                top: 70px;
+                right: 10px;
+                background-color: rgba(0, 0, 0, 0.9);
+                width: 200px;
+                padding: 15px;
+                border-radius: 5px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+                z-index: 1000;
+            }
+
+            .navbar-menu.active {
+                display: flex;
+            }
+
+            .navbar-menu li a {
+                font-size: 1em;
+            }
+
+            .navbar-menu .social-icons {
+                gap: 10px;
+                margin-left: 0;
+            }
+
+            .navbar-menu .social-icons img {
+                width: 24px;
+                height: 24px;
+            }
+        }
+
+        .about-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            padding: 40px;
+            background-color: var(--light);
+            margin: 2rem auto;
+            max-width: 1200px;
+            border-radius: var(--radius);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-store-img {
+            flex: 1;
+            max-width: 50%;
+        }
+
+        .about-store-img img {
+            width: 100%;
+            height: auto;
+            border-radius: var(--radius);
+        }
+
+        .about-store-text {
+            flex: 1;
+            max-width: 50%;
+            margin-left: 30px;
+        }
+
+        .about-store-text h2 {
+            font-size: 2.5em;
+            color: var(--dark);
+            margin-bottom: 20px;
+        }
+
+        .about-store-text p {
+            font-size: 1.1em;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .values-section {
+            margin-top: 40px;
+            padding: 40px;
+            background-color: var(--light);
+            border-radius: var(--radius);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 1200px;
+            margin: 2rem auto;
+        }
+
+        .values-section h2 {
+            font-size: 2.5em;
+            color: var(--dark);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .values-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .value-item {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: var(--radius);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .value-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .value-item img {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 15px;
+        }
+
+        .value-item h3 {
+            font-size: 1.5em;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .value-item p {
+            font-size: 1em;
+            color: #555;
+        }
+
+        @media (max-width: 768px) {
+            .about-section {
+                flex-direction: column;
+                padding: 20px;
+            }
+
+            .about-store-img,
+            .about-store-text {
+                max-width: 100%;
+                margin-left: 0;
+            }
+
+            .about-store-text {
+                margin-top: 20px;
+            }
+
+            .about-store-text h2 {
+                font-size: 2em;
+            }
+
+            .about-store-text p {
+                font-size: 1em;
+            }
+
+            .values-section {
+                padding: 20px;
+            }
+
+            .values-section h2 {
+                font-size: 2em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .about-store-text h2 {
+                font-size: 1.8em;
+            }
+
+            .about-store-text p {
+                font-size: 0.9em;
+            }
+
+            .values-section h2 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar Actualizado -->
+    <header class="navbar">
+        <div class="navbar-logo">
+            <img src="logo.png" alt="Logo CalzadoCalidoso">
+            <span>CalzadoCalidoso</span>
+        </div>
+
+    <!-- Menú de navegación -->
+    <ul class="navbar-menu" id="navbar-menu">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="catalogo.html">Catálogo</a></li>
+        <li><a href="nosotros.html">Nosotros</a></li>
+        <li><a href="contacto.html">Contáctanos</a></li>
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">Política de envíos</a></li>
+            <li class="social-icons">
+                <a href="https://www.facebook.com/"><img src="facebook.png" alt="Facebook"></a>
+                <a href="https://www.instagram.com/"><img src="instagram.png" alt="Instagram"></a>
+                <a href="https://www.x.com/"><img src="X.png" alt="Twitter"></a>
+            </li>
+        </ul>
+
+        <div class="navbar-hamburger" id="hamburger-icon">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+    </header>
+
+    <main>
+        <div class="about-section">
+            <div class="about-store-img">
+                <img src="img/nosotros.jpg" alt="Nuestro equipo">
+            </div>
+            <div class="about-store-text">
+                <h2>Sobre Nosotros</h2>
+                <p>CalzadoCalidoso nació en 2020 con la misión de ofrecer calzado de alta calidad a precios accesibles. Desde entonces, hemos crecido hasta convertirnos en una de las tiendas online más confiables del sector.</p>
+                <p>Nuestro equipo está compuesto por profesionales apasionados por el calzado y comprometidos con ofrecer la mejor experiencia de compra a nuestros clientes.</p>
+            </div>
+        </div>
+
+        <section class="values-section">
+            <h2>Nuestros Valores</h2>
+            <div class="values-list">
+                <div class="value-item">
+                    <img src="AltaCalidad.png" alt="Calidad">
+                    <h3>Calidad</h3>
+                    <p>Productos duraderos y de materiales premium.</p>
+                </div>
+                <div class="value-item">
+                    <img src="ServicioCliente.png" alt="Servicio">
+                    <h3>Atención al Cliente</h3>
+                    <p>Soporte personalizado y rápido.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-logo">
+                <span>CalzadoCalidoso</span>
+            </div>
+            <ul class="footer-menu">
+                <li><a href="#">Términos y condiciones</a></li>
+                <li><a href="#">Política de privacidad</a></li>
+                <li><a href="#">Política de cookies</a></li>
+            </ul>
+            <div class="footer-contact">
+                <p style="color: #999;">Espacio reservado</p>
+            </div>
+        </div>
+    </footer>
     
-    <main>  
-        <h2>Sobre Nosotros</h2>  
-        <p>Nuestra misión es ofrecer el mejor calzado del mercado.</p>  
-        <p>Nuestra visión es ser líderes en el mundo del calzado.</p>  
-    </main>  
-</body>  
+    <!-- Carrito Flotante -->
+    <div class="carrito-flotante">
+        <div class="carrito-icono" onclick="toggleCarrito()">
+            🛒
+            <span class="carrito-contador">0</span>
+        </div>
+        
+        <div class="carrito-contenido">
+            <h3>Tu selección</h3>
+            <div class="carrito-items"></div>
+            <div class="carrito-total">
+                Total: $<span>0</span>
+            </div>
+            <button class="btn-comprar" onclick="finalizarCompra()">💬 Completar pedido</button>
+        </div>
+    </div>
+    
+    <script src="scripts.js">
+        // Script para el menú hamburguesa
+        const hamburgerIcon = document.getElementById('hamburger-icon');
+        const navbarMenu = document.getElementById('navbar-menu');
+
+        hamburgerIcon.addEventListener('click', () => {
+            navbarMenu.classList.toggle('active');
+        });
+    </script>
+</body>
 </html>
