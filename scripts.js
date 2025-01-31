@@ -84,18 +84,13 @@ function resetearCatalogo() {
         producto.style.display = 'block'; // Mostrar todos los productos
     });
 
-    // Restablecer el menú desplegable de "Organizar por"
-    document.getElementById('organizar-por').value = 'menor-mayor';
-
-    // Restablecer los filtros
-    resetFilters();
 }
 
 // Función para aplicar los filtros
 function applyFilters() {
     // Restablecer el catálogo antes de aplicar los filtros
     resetearCatalogo();
-
+    
     // Obtener los valores de los filtros
     const minPrice = document.getElementById('min-precio').value.replace(/\D/g, '');
     const maxPrice = document.getElementById('max-precio').value.replace(/\D/g, '');
@@ -152,16 +147,28 @@ function resetFilters() {
 
     // Restablecer la selección de talla
     document.getElementById('select-talla').value = 'todos';
+
+    // Aplicar los filtros (esto mostrará todos los productos)
+    applyFilters();
 }
 
 // Función para organizar productos
 function organizarProductos(criterio) {
     const productosContainer = document.querySelector('.grid-productos');
     const productos = Array.from(productosContainer.querySelectorAll('.producto'));
+// Función para restablecer el catálogo a su estado inicial
+function resetearCatalogo() {
+    const productos = document.querySelectorAll('.producto');
+    productos.forEach(producto => {
+        producto.style.display = 'block'; // Mostrar todos los productos
+    });
 
-    // Restablecer el catálogo antes de aplicar cualquier ordenación o filtro
-    resetearCatalogo();
+    // Restablecer el menú desplegable de "Organizar por"
+    document.getElementById('organizar-por').value = 'menor-mayor'; // O el valor predeterminado que desees
 
+    // Restablecer los filtros (opcional, si deseas que también se limpien los filtros)
+    resetFilters();
+}
     // Función para obtener el precio de un producto
     const obtenerPrecio = (producto) => {
         const precioTexto = producto.querySelector('p').textContent.replace(/\D/g, '');
@@ -217,23 +224,6 @@ document.addEventListener('DOMContentLoaded', function () {
         console.error("No se encontró el ícono de hamburguesa o el menú.");
     }
 });
-
-// Botón de Volver arriba
-const backToTopButton = document.getElementById('back-to-top');
-
-if (backToTopButton) {
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 300) {
-            backToTopButton.style.display = 'block';
-        } else {
-            backToTopButton.style.display = 'none';
-        }
-    });
-
-    backToTopButton.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-}
 
 // Mostrar/ocultar filtros en móviles
 const mostrarFiltrosBtn = document.getElementById('mostrar-filtros-btn');
