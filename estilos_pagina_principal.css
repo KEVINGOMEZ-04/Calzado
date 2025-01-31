@@ -40,17 +40,20 @@ body {
     color: orange;
 }
 
+/* Menú de navegación (PC) */
 .navbar-menu {
     list-style: none;
     display: flex;
     gap: 30px;
     margin-left: 20px;
+    align-items: center; /* Centra verticalmente los elementos del menú */
 }
 
 .navbar-menu li a {
     text-decoration: none;
     color: white;
     font-weight: 600;
+    font-size: 1.1em; /* Agrandar el texto del menú en PC */
     transition: color 0.3s ease;
 }
 
@@ -58,15 +61,25 @@ body {
     color: orange;
 }
 
-.navbar-icons {
+/* Íconos de redes sociales (PC) */
+.navbar-menu .social-icons {
     display: flex;
-    align-items: center;
-    gap: 10px;
+    gap: 15px;
+    margin-left: 20px; /* Mover ligeramente a la izquierda */
 }
 
-.navbar-icons img {
-    width: 24px;
-    height: 24px;
+.navbar-menu .social-icons a {
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.navbar-menu .social-icons a:hover {
+    transform: scale(1.1); /* Efecto de escala al pasar el mouse */
+}
+
+.navbar-menu .social-icons img {
+    width: 28px; /* Agrandar los íconos en PC */
+    height: 28px;
 }
 
 /* Estilos del ícono de hamburguesa */
@@ -84,22 +97,22 @@ body {
     border-radius: 5px;
 }
 
-/* Estilos para pantallas pequeñas */
-@media (max-width: 768px) {
+/* Estilos para pantallas pequeñas (Tablet y móviles) */
+@media (max-width: 1024px) {
     .navbar-hamburger {
-        display: flex; /* Mostrar el ícono de hamburguesa en móviles */
+        display: flex; /* Mostrar el ícono de hamburguesa en Tablet y móviles */
     }
 
     .navbar-menu {
-        display: none; /* Ocultar el menú por defecto en móviles */
+        display: none; /* Ocultar el menú por defecto en Tablet y móviles */
         flex-direction: column;
         gap: 10px;
         position: absolute;
-        top: 60px; /* Ajusta según la altura de tu navbar */
-        right: 20px;
-        background-color: #000;
-        width: 200px;
-        padding: 10px;
+        top: 70px; /* Ajusta según la altura de tu navbar */
+        right: 10px;
+        background-color: rgba(0, 0, 0, 0.9); /* Fondo semi-transparente */
+        width: 200px; /* Ancho del menú */
+        padding: 15px;
         border-radius: 5px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
         z-index: 1000; /* Asegura que el menú esté por encima de otros elementos */
@@ -107,6 +120,20 @@ body {
 
     .navbar-menu.active {
         display: flex; /* Mostrar el menú cuando tiene la clase 'active' */
+    }
+
+    .navbar-menu li a {
+        font-size: 1em; /* Tamaño de fuente para Tablet y móviles */
+    }
+
+    .navbar-menu .social-icons {
+        gap: 10px; /* Reduce el espacio entre íconos en móviles */
+        margin-left: 0; /* Eliminar el margen izquierdo en móviles */
+    }
+
+    .navbar-menu .social-icons img {
+        width: 24px; /* Tamaño de los íconos en móviles */
+        height: 24px;
     }
 }
 
@@ -168,6 +195,32 @@ body {
     background-color: red;
 }
 
+/* Ajustes del Banner para móviles */
+@media (max-width: 768px) {
+    .banner h1 {
+        font-size: 2em; /* Reduce el tamaño del título en móviles */
+    }
+
+    .banner p {
+        font-size: 1em; /* Reduce el tamaño del texto en móviles */
+    }
+
+    .banner .btn {
+        padding: 8px 16px; /* Reduce el tamaño del botón */
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 480px) {
+    .banner h1 {
+        font-size: 1.8em; /* Reduce aún más el tamaño del título */
+    }
+
+    .banner p {
+        font-size: 0.9em; /* Reduce aún más el tamaño del texto */
+    }
+}
+
 /* Best Sellers */
 .best-sellers {
     margin: 20px 0;
@@ -222,6 +275,25 @@ body {
     transform: scale(1.05);
 }
 
+/* Ajustes del Product Slider para móviles */
+@media (max-width: 768px) {
+    .product-slider {
+        gap: 10px; /* Reduce el espacio entre productos */
+    }
+
+    .product-item {
+        width: 150px; /* Reduce el ancho de los productos */
+    }
+
+    .product-item img {
+        height: 150px; /* Reduce la altura de las imágenes */
+    }
+
+    .product-item p {
+        font-size: 0.9em; /* Reduce el tamaño de la fuente */
+    }
+}
+
 /* Sección sobre la tienda */
 .about-store {
     display: flex;
@@ -262,10 +334,11 @@ body {
     line-height: 1.6;
 }
 
-/* Estilos para pantallas pequeñas */
+/* Ajustes de la sección "About Store" para móviles */
 @media (max-width: 768px) {
     .about-store {
         flex-direction: column; /* Cambia a columna en pantallas pequeñas */
+        padding: 20px; /* Reduce el padding en móviles */
     }
 
     .about-store-img,
@@ -276,6 +349,24 @@ body {
 
     .about-store-text {
         margin-top: 20px; /* Espacio entre la imagen y el texto en pantallas pequeñas */
+    }
+
+    .about-store-text h2 {
+        font-size: 2em; /* Reduce el tamaño del título */
+    }
+
+    .about-store-text p {
+        font-size: 1em; /* Reduce el tamaño del texto */
+    }
+}
+
+@media (max-width: 480px) {
+    .about-store-text h2 {
+        font-size: 1.8em; /* Reduce aún más el tamaño del título */
+    }
+
+    .about-store-text p {
+        font-size: 0.9em; /* Reduce aún más el tamaño del texto */
     }
 }
 
@@ -298,6 +389,18 @@ body {
     max-width: 360px;
     height: 640px;
     border-radius: 10px;
+}
+
+/* Ajustes del Video para móviles */
+@media (max-width: 768px) {
+    .store-video {
+        padding: 20px; /* Reduce el padding en móviles */
+    }
+
+    .video-container iframe {
+        max-width: 100%; /* Ajusta el iframe al ancho de la pantalla */
+        height: 200px; /* Reduce la altura del video */
+    }
 }
 
 /* Footer */
@@ -348,6 +451,24 @@ footer {
 
 .footer-contact {
     font-size: 0.9em;
+}
+
+/* Ajustes del Footer para móviles */
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column; /* Apila los elementos del footer */
+        text-align: center;
+    }
+
+    .footer-menu {
+        flex-direction: column; /* Apila los elementos del menú */
+        gap: 10px;
+        margin: 10px 0;
+    }
+
+    .footer-contact {
+        margin-top: 10px; /* Añade espacio arriba del texto de contacto */
+    }
 }
 
 /* Botón de Volver arriba */
