@@ -5,237 +5,232 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adidas Continental - Detalles del Producto</title>
     <link rel="stylesheet" href="estilos_pagina_principal.css">
+    <link rel="stylesheet" href="estilos_catalogo.css">
     <style>
-        /* Diseño principal del producto */
+        /* Estilos adicionales específicos para esta página */
         .producto-detalle {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 2rem;
-            padding: 2rem;
+            margin: 100px auto 40px;
             max-width: 1200px;
-            margin: 0 auto;
+            padding: 20px;
         }
 
-        .producto-detalle .imagen {
-            flex: 1;
-            max-width: 500px;
+        .producto-galeria {
+            display: grid;
+            gap: 20px;
         }
 
-        .producto-detalle .imagen img {
+        .imagen-principal img {
             width: 100%;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            height: 500px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
-        .producto-detalle .info {
-            flex: 2;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            gap: 1.5rem;
+        .thumbnails {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
         }
 
-        .producto-detalle .info h1 {
-            font-size: 2.5rem;
-            color: #1E3A8A;
-        }
-
-        .producto-detalle .info p {
-            font-size: 1.2rem;
-            color: #555;
-            line-height: 1.6;
-        }
-
-        .producto-detalle .info .precio {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #d4af37;
-        }
-
-        .producto-detalle .info .botones {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .producto-detalle .info .botones button {
-            padding: 1rem 1.5rem;
-            font-size: 1rem;
-            font-weight: bold;
-            color: white;
-            background-color: #1E3A8A;
-            border: none;
+        .thumbnails img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
             border-radius: 8px;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            transition: transform 0.3s ease;
         }
 
-        .producto-detalle .info .botones button:hover {
-            background-color: #142c71;
+        .thumbnails img:hover {
+            transform: scale(1.05);
         }
 
-        /* Estilo uniforme de selección */
-        .producto-detalle .info select,
-        .color-options .color {
-            border: 2px solid transparent;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        .producto-info {
+            margin-top: 30px;
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
-        .producto-detalle .info select.selected,
-        .color-options .color.selected {
-            border-color: #1E3A8A;
-            box-shadow: 0 0 8px rgba(30, 58, 138, 0.5);
+        .selectores {
+            display: grid;
+            gap: 25px;
+            margin: 25px 0;
         }
 
-        .color-options {
+        .talla-lista {
             display: flex;
-            gap: 1rem;
+            flex-direction: column;
+            gap: 8px;
+            max-height: 250px;
+            overflow-y: auto;
+            padding-right: 10px;
         }
 
-        .color-options .color {
-            width: 40px;
-            height: 40px;
+        .color-btn {
+            padding: 5px;
+            border: 2px solid transparent;
             border-radius: 50%;
-            cursor: pointer;
+            transition: all 0.3s ease;
         }
 
-        .color-options .color[data-color="blanco"] {
-            background-color: white;
-            border: 2px solid #ccc;
-            position: relative;
+        .color-btn.selected {
+            border-color: #1E3A8A;
+            transform: scale(1.1);
         }
 
-        .color-options .color[data-color="blanco"]::after {
-            content: "";
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 30px;
-            height: 30px;
-            background-color: #666;
-            border-radius: 50%;
-            z-index: -1;
+        .btn-carrito {
+            background: #1E3A8A;
+            color: white;
+            padding: 15px 30px;
+            font-size: 1.1em;
         }
 
-        footer {
-            text-align: center;
-            padding: 1rem;
-            background-color: #f4f4f4;
-            color: #555;
-            margin-top: 2rem;
-        }
-
-        footer p {
-            margin: 0;
+        .btn-carrito:hover {
+            background: #142c71;
         }
     </style>
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            // Función básica para simular agregar al carrito
-            const comprarBtn = document.querySelector("button");
-            comprarBtn.addEventListener("click", () => {
-                const talla = document.getElementById("talla").value;
-                const color = document.querySelector(".color.selected")?.dataset.color || "sin seleccionar";
-                const genero = document.getElementById("genero").value;
-                alert(`Producto agregado:\nTalla: ${talla}\nColor: ${color}\nGénero: ${genero}`);
-            });
-
-            // Selección de color con contorno uniforme
-            const colores = document.querySelectorAll(".color");
-            colores.forEach(color => {
-                color.addEventListener("click", () => {
-                    colores.forEach(c => c.classList.remove("selected"));
-                    color.classList.add("selected");
-                });
-            });
-
-            // Selección de talla y género con contorno uniforme
-            const selects = document.querySelectorAll("select");
-            selects.forEach(select => {
-                select.addEventListener("change", () => {
-                    selects.forEach(s => s.classList.remove("selected"));
-                    select.classList.add("selected");
-                });
-            });
-        });
-    </script>
 </head>
 <body>
 
-<!-- Navbar -->
+<!-- Navbar Actualizado -->
 <header class="navbar">
     <div class="navbar-logo">
-        <img src="logo.png" alt="Logo de la Tienda">
+        <img src="logo.png" alt="Logo CalzadoCalidoso">
         <span>CalzadoCalidoso</span>
     </div>
-    <ul class="navbar-menu">
+
+    <ul class="navbar-menu" id="navbar-menu">
         <li><a href="index.html">Inicio</a></li>
         <li><a href="catalogo.html">Catálogo</a></li>
         <li><a href="#">Nosotros</a></li>
         <li><a href="contacto.html">Contactos</a></li>
         <li><a href="#">FAQ</a></li>
         <li><a href="#">Política de envíos</a></li>
+        <li class="social-icons">
+            <a href="https://www.facebook.com/"><img src="facebook.png" alt="Facebook"></a>
+            <a href="https://www.instagram.com/"><img src="instagram.png" alt="Instagram"></a>
+            <a href="https://www.x.com/"><img src="X.png" alt="Twitter"></a>
+        </li>
     </ul>
-    <div class="navbar-icons">
-        <a href="https://www.facebook.com/"><img src="facebook.png" alt="Facebook"></a>
-        <a href="https://www.instagram.com/"><img src="instagram.png" alt="Instagram"></a>
-        <a href="https://www.x.com/"><img src="X.png" alt="Twitter"></a>
+
+    <div class="navbar-hamburger" id="hamburger-icon">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
     </div>
 </header>
 
-
-<!-- Detalles del Producto -->
-<main>
-    <section class="producto-detalle">
-        <div class="imagen">
+<!-- Contenido Principal -->
+<main class="producto-detalle">
+    <section class="producto-galeria">
+        <div class="imagen-principal">
             <img src="AdidasContinental.jpeg" alt="Adidas Continental">
         </div>
-        <div class="info">
-            <h1>Adidas Continental</h1>
-            <p>El calzado perfecto para combinar estilo y comodidad. Hecho con materiales de alta calidad para garantizar durabilidad y soporte en tu día a día.</p>
-            <p class="precio">$140.000</p>
+        <div class="thumbnails">
+            <img src="detalle1.jpg" alt="Detalle lateral">
+            <img src="detalle2.jpg" alt="Detalle superior">
+            <img src="detalle3.jpg" alt="Detalle suela">
+        </div>
+    </section>
 
-            <div class="botones">
-                <label for="talla">Selecciona tu talla:</label>
-                <select id="talla">
-                    <option value="20">20</option>
-                    <option value="22">22</option>
-                    <option value="24">24</option>
-                    <option value="26">26</option>
-                    <option value="28">28</option>
-                    <option value="30">30</option>
-                    <option value="32">32</option>
-                    <option value="34">34</option>
-                    <option value="36">36</option>
-                    <option value="38">38</option>
-                    <option value="40">40</option>
-                    <option value="42">42</option>
-                </select>
+    <section class="producto-info">
+        <h1>Adidas Continental</h1>
+        <div class="precio">
+            <span>$140.000</span>
+            <small>IVA incluido</small>
+        </div>
 
-                <label for="genero">Selecciona el género:</label>
-                <select id="genero">
-                    <option value="hombre">Hombre</option>
-                    <option value="mujer">Mujer</option>
-                </select>
-
-                <label for="color">Selecciona el color:</label>
-                <div class="color-options">
-                    <div class="color" data-color="negro" style="background-color: black;"></div>
-                    <div class="color" data-color="rojo" style="background-color: red;"></div>
-                    <div class="color" data-color="blanco" style="background-color: white;"></div>
+        <div class="selectores">
+            <div class="talla-selector">
+                <h3>Selecciona tu talla:</h3>
+                <div class="talla-lista">
+                    <button class="talla-item" data-talla="36">36</button>
+                    <button class="talla-item" data-talla="38">38</button>
+                    <button class="talla-item" data-talla="40" disabled>40 - Agotado</button>
+                    <button class="talla-item" data-talla="42">42</button>
                 </div>
+            </div>
 
-                <button>Comprar Ahora</button>
+            <div class="color-selector">
+                <h3>Elige tu color:</h3>
+                <div class="colores">
+                    <button class="color-btn" data-color="negro">
+                        <div class="color-circle" style="background: #000"></div>
+                    </button>
+                    <button class="color-btn" data-color="rojo">
+                        <div class="color-circle" style="background: #FF0000"></div>
+                    </button>
+                    <button class="color-btn" data-color="blanco">
+                        <div class="color-circle" style="background: #FFF; border: 1px solid #eee"></div>
+                    </button>
+                </div>
             </div>
         </div>
+
+        <button class="btn-carrito" onclick="addToCart('Adidas Continental', 140000)">
+            🛒 Añadir al Carrito
+        </button>
+
+        <article class="descripcion">
+            <h2>Características destacadas</h2>
+            <ul>
+                <li>Material superior en malla transpirable</li>
+                <li>Suela de EVA ultraligera</li>
+                <li>Plantilla OrthoLite® con amortiguación</li>
+                <li>Peso total: 280 gramos</li>
+                <li>Disponible en 3 colores clásicos</li>
+            </ul>
+        </article>
     </section>
 </main>
 
-<!-- Footer -->
-<footer>
-    <p>CalzadoCalidoso &copy; 2025</p>
+<footer class="site-footer">
+    <div class="footer-content">
+        <p>© 2025 CalzadoCalidoso - Todos los derechos reservados</p>
+        <nav>
+            <a href="#">Términos y condiciones</a>
+            <a href="#">Política de privacidad</a>
+            <a href="#">Soporte técnico</a>
+        </nav>
+    </div>
 </footer>
 
+<!-- Carrito Flotante -->
+<div class="carrito-flotante">
+    <div class="carrito-icono" onclick="toggleCarrito()">
+        🛒
+        <span class="carrito-contador">0</span>
+    </div>
+    
+    <div class="carrito-contenido">
+        <h3>Tu selección</h3>
+        <div class="carrito-items"></div>
+        <div class="carrito-total">
+            Total: $<span>0</span>
+        </div>
+        <button class="btn-comprar" onclick="finalizarCompra()">💬 Completar pedido</button>
+    </div>
+</div>
+
+<script src="scripts.js"></script>
+<script>
+    // Inicialización de selectores
+    document.querySelectorAll('.talla-item:not([disabled])').forEach(btn => {
+        btn.addEventListener('click', function() {
+            document.querySelectorAll('.talla-item').forEach(t => t.classList.remove('selected'));
+            this.classList.add('selected');
+        });
+    });
+
+    document.querySelectorAll('.color-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            document.querySelectorAll('.color-btn').forEach(c => c.classList.remove('selected'));
+            this.classList.add('selected');
+        });
+    });
+</script>
 </body>
 </html>
