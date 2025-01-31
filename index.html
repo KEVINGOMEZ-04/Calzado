@@ -118,8 +118,23 @@
         </div>
     </div>
 </footer>
-<!-- Botón de Volver arriba -->
-<button id="back-to-top" class="back-to-top">↑</button>
+
+<!-- Carrito Flotante -->
+<div class="carrito-flotante">
+    <div class="carrito-icono" onclick="toggleCarrito()">
+        🛒
+        <span class="carrito-contador">0</span>
+    </div>
+    
+    <div class="carrito-contenido">
+        <h3>Tu selección</h3>
+        <div class="carrito-items"></div>
+        <div class="carrito-total">
+            Total: $<span>0</span>
+        </div>
+        <button class="btn-comprar" onclick="finalizarCompra()">💬 Completar pedido</button>
+    </div>
+</div>
 
 <script src="scripts.js"></script>
 </body>
