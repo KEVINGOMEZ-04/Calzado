@@ -6,23 +6,6 @@
     <title>Catálogo - CalzadoCalidoso</title>
     <link rel="stylesheet" href="estilos_pagina_principal.css">
     <link rel="stylesheet" href="estilos_catalogo.css">
-
-    <style>
-        /* Cambios solicitados */
-        .filtros ul li a {
-            color: #d4af37; /* Color dorado para las categorías */
-            font-weight: bold;
-            text-decoration: none;
-        }
-
-        .filtros ul li a:hover {
-            color: #c89e35; /* Dorado más oscuro al pasar el cursor */
-        }
-
-        .filtros h3 {
-            border-bottom: none; /* Quita la línea inferior */
-        }
-    </style>
 </head>
 <body>
 
@@ -32,52 +15,58 @@
         <img src="logo.png" alt="Logo de la Tienda">
         <span>CalzadoCalidoso</span>
     </div>
-    <ul class="navbar-menu">
+    <ul class="navbar-menu" id="navbar-menu">
         <li><a href="index.html">Inicio</a></li>
         <li><a href="catalogo.html">Catálogo</a></li>
         <li><a href="#">Nosotros</a></li>
         <li><a href="contacto.html">Contactos</a></li>
         <li><a href="#">FAQ</a></li>
         <li><a href="#">Política de envíos</a></li>
+        <li class="social-icons">
+            <a href="https://www.facebook.com/"><img src="facebook.png" alt="Facebook"></a>
+            <a href="https://www.instagram.com/"><img src="instagram.png" alt="Instagram"></a>
+            <a href="https://www.x.com/"><img src="X.png" alt="Twitter"></a>
+        </li>
     </ul>
-    <div class="navbar-icons">
-        <a href="https://www.facebook.com/"><img src="facebook.png" alt="Facebook"></a>
-        <a href="https://www.instagram.com/"><img src="instagram.png" alt="Instagram"></a>
-        <a href="https://www.x.com/"><img src="X.png" alt="Twitter"></a>
+    <!-- Ícono de hamburguesa -->
+    <div class="navbar-hamburger" id="hamburger-icon">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
     </div>
 </header>
 
 <!-- Contenedor principal -->
 <main class="catalogo-container">
+    <!-- Botón para mostrar/ocultar filtros en móviles -->
+    <button class="mostrar-filtros-btn" id="mostrar-filtros-btn">Mostrar Filtros</button>
+
     <!-- Filtros -->
-    <aside class="filtros">
+    <aside class="filtros" id="filtros">
         <h3>Categorías</h3>
         <ul>
             <li><a href="#">Hombres</a></li>
             <li><a href="#">Mujeres</a></li>
             <li><a href="#">Niños</a></li>
-            <li><a href="#">Ofertas</a></li>
-        </ul>
-        <h3>Explorar por</h3>
-        <ul>
-            <li><a href="#">Todos los productos</a></li>
-        </ul>
         <h3>Filtrar por</h3>
+                <!-- Filtro por precio -->
         <div class="filtro-precio">
             <label for="min-precio">Precio:</label>
             <div class="precio-inputs">
-                <input type="number" id="min-precio" name="min-precio" placeholder="Mínimo">
-                <input type="number" id="max-precio" name="max-precio" placeholder="Máximo">
+                <input type="text" id="min-precio" name="min-precio" placeholder="Mínimo" oninput="formatPrice(this)">
+                <input type="text" id="max-precio" name="max-precio" placeholder="Máximo" oninput="formatPrice(this)">
             </div>
         </div>
+        <!-- Filtro por color -->
         <div class="filtro-color">
             <h4>Color</h4>
             <ul>
-                <li><input type="checkbox" id="negro"> <label for="negro">Negro</label></li>
-                <li><input type="checkbox" id="blanco"> <label for="blanco">Blanco</label></li>
-                <li><input type="checkbox" id="rojo"> <label for="rojo">Rojo</label></li>
+                <li><input type="checkbox" id="negro" value="negro"> <label for="negro">Negro</label></li>
+                <li><input type="checkbox" id="blanco" value="blanco"> <label for="blanco">Blanco</label></li>
+                <li><input type="checkbox" id="rojo" value="rojo"> <label for="rojo">Rojo</label></li>
             </ul>
         </div>
+        <!-- Filtro por talla -->
         <div class="filtro-talla">
             <h4>Talla</h4>
             <select id="select-talla">
@@ -96,115 +85,132 @@
                 <option value="42">42</option>
             </select>
         </div>
+
+        <!-- Botón para aplicar filtros -->
         <button class="aplicar-filtros" onclick="applyFilters()">Aplicar filtros</button>
     </aside>
 
     <!-- Productos -->
     <section class="productos">
+    <!-- Casilla "Organizar por" y botón "Reiniciar" -->
+<div class="organizar-por">
+    <label for="organizar-por">Organizar por:</label>
+    <select id="organizar-por" onchange="organizarProductos(this.value)">
+        <option value="menor-mayor">Precio (Menor a Mayor)</option>
+        <option value="mayor-menor">Precio (Mayor a Menor)</option>
+        <option value="ofertas">Ofertas</option>
+        <option value="mas-vendidos">Más vendidos</option>
+    </select>
+    <button class="reiniciar-btn" onclick="resetearCatalogo()">Reiniciar</button>
+</div>
+        <!-- Grid de Productos -->
         <div class="grid-productos">
-            <div class="producto" data-colores="negro,rojo,blanco" data-tallas="20,22,24,26,28,30,32,34,36,38,40,42">
+            
+            <!-- Producto 1 (En oferta) -->
+            <div class="producto" data-colores="negro,rojo,blanco" data-tallas="20,22,24,26,28,30,32,34,36,38,40,42" data-oferta="true" data-ventas="120">
                 <a href="AdidasContinental.html" class="product-link">
+                    <div class="oferta-banner">¡En oferta!</div>
                     <img src="AdidasContinental.jpeg" alt="Producto 1">
                     <h4>Adidas Continental</h4>
                     <p>$140.000</p>
-                    <!-- Disponibilidad de color -->
-                    <div class="product-icons">
-                        <span class="color-icon" style="background-color: black; border: 2px solid #f5f5f5;" title="Negro"></span>
-                        <span class="color-icon" style="background-color: red; border: 2px solid #f5f5f5;" title="Rojo"></span>
-                        <span class="color-icon" style="background-color: white; border: 2px solid #333;" title="Blanco"></span>
+                    <div class="product-details">
+                        <p>Calzado para hombre</p>
+                        <div class="color-icons">
+                            <span class="color-icon" style="background-color: black;"></span>
+                            <span class="color-icon" style="background-color: red;"></span>
+                            <span class="color-icon" style="background-color: white;"></span>
+                        </div>
                     </div>
-                    <!-- Rango de tallas -->
-                    <p class="available-sizes">Tallas disponibles: 20 - 42</p>
                 </a>
             </div>
 
-            <!-- Producto 2 -->
-            <div class="producto" data-colores="rojo" data-tallas="30,32,34,36,38,40,42">
+            <!-- Producto 2 (Sin oferta) -->
+            <div class="producto" data-colores="rojo" data-tallas="30,32,34,36,38,40,42" data-ventas="80">
                 <a href="AdidasYeezy.html" class="product-link">
                     <img src="AdidasYeezy.jpeg" alt="Producto 2">
                     <h4>Adidas Yeezy</h4>
                     <p>$160,000</p>
-                    <!-- Disponibilidad de color -->
-                    <div class="product-icons">
-                        <span class="color-icon" style="background-color: red; border: 2px solid #f5f5f5;" title="Rojo"></span>
+                    <div class="product-details">
+                        <p>Calzado para hombre</p>
+                        <div class="color-icons">
+                            <span class="color-icon" style="background-color: red;"></span>
+                        </div>
                     </div>
-                    <!-- Rango de tallas -->
-                    <p class="available-sizes">Tallas disponibles: 30 - 42</p>
                 </a>
             </div>
 
-            <!-- Producto 3 -->
-            <div class="producto" data-colores="blanco" data-tallas="20,22,24,26,28,30,32,34,36,38,40,42">
+            <!-- Producto 3 (En oferta) -->
+            <div class="producto" data-colores="blanco" data-tallas="20,22,24,26,28,30,32,34,36,38,40,42" data-oferta="true" data-ventas="200">
                 <a href="ArmourStorm.html" class="product-link">
+                    <div class="oferta-banner">¡En oferta!</div>
                     <img src="ArmourStorm.jpeg" alt="Producto 3">
                     <h4>Armour Storm</h4>
                     <p>$180,000</p>
-                    <!-- Disponibilidad de color -->
-                    <div class="product-icons">
-                        <span class="color-icon" style="background-color: white; border: 2px solid #333;" title="Blanco"></span>
+                    <div class="product-details">
+                        <p>Calzado para hombre</p>
+                        <div class="color-icons">
+                            <span class="color-icon" style="background-color: white;"></span>
+                        </div>
                     </div>
-                    <!-- Rango de tallas -->
-                    <p class="available-sizes">Tallas disponibles: 20 - 42</p>
                 </a>
             </div>
 
-            <!-- Producto 4 -->
-            <div class="producto" data-colores="negro,blanco" data-tallas="20,22,24,26,28,30,32,34,36,38,40,42">
-                <a href="producto4.html" class="product-link">
-                    <img src="ChanclasNike.jpeg" alt="Producto 4">
-                    <h4>Chanclas Nike</h4>
-                    <p>$120.000</p>
-                    <!-- Disponibilidad de color -->
-                    <div class="product-icons">
-                        <span class="color-icon" style="background-color: black; border: 2px solid #f5f5f5;" title="Negro"></span>
-                        <span class="color-icon" style="background-color: white; border: 2px solid #333;" title="Blanco"></span>
-                    </div>
-                    <!-- Rango de tallas -->
-                    <p class="available-sizes">Tallas disponibles: 20 - 42</p>
-                </a>
-            </div>
-
-            <!-- Producto 5 -->
-            <div class="producto" data-colores="negro,blanco" data-tallas="20,22,24,26,28,30,32,34,36,38,40,42">
-                <a href="producto5.html" class="product-link">
-                    <img src="Nike2000.jpeg" alt="Producto 5">
-                    <h4>Nike 2000</h4>
-                    <p>$140.000</p>
-                    <!-- Disponibilidad de color -->
-                    <div class="product-icons">
-                        <span class="color-icon" style="background-color: black; border: 2px solid #f5f5f5;" title="Negro"></span>
-                        <span class="color-icon" style="background-color: white; border: 2px solid #333;" title="Blanco"></span>
-                    </div>
-                    <!-- Rango de tallas -->
-                    <p class="available-sizes">Tallas disponibles: 20 - 42</p>
-                </a>
-            </div>
-
-            <!-- Producto 6 -->
-            <div class="producto" data-colores="negro,blanco" data-tallas="20,22,24,26,28,30,32,34,36,38,40,42">
-                <a href="producto6.html" class="product-link">
-                    <img src="PumaNitro.jpeg" alt="Producto 6">
-                    <h4>Puma Nitro</h4>
-                    <p>$150.000</p>
-                    <!-- Disponibilidad de color -->
-                    <div class="product-icons">
-                        <span class="color-icon" style="background-color: black; border: 2px solid #f5f5f5;" title="Negro"></span>
-                        <span class="color-icon" style="background-color: white; border: 2px solid #333;" title="Blanco"></span>
-                    </div>
-                    <!-- Rango de tallas -->
-                    <p class="available-sizes">Tallas disponibles: 20 - 42</p>
-                </a>
-            </div>
+                        <!-- Producto 4 -->
+                        <div class="producto" data-colores="negro,blanco" data-tallas="20,22,24,26,28,30,32,34,36,38,40,42">
+                            <a href="producto4.html" class="product-link">
+                                <img src="ChanclasNike.jpeg" alt="Producto 4">
+                                <h4>Chanclas Nike</h4>
+                                <p>$120.000</p>
+                                <div class="product-details">
+                                    <p>Calzado para hombre</p>
+                                    <div class="color-icons">
+                                        <span class="color-icon" style="background-color: black;"></span>
+                                        <span class="color-icon" style="background-color: white;"></span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    
+                        <!-- Producto 5 -->
+                        <div class="producto" data-colores="negro,blanco" data-tallas="20,22,24,26,28,30,32,34,36,38,40,42">
+                            <a href="producto5.html" class="product-link">
+                                <img src="Nike2000.jpeg" alt="Producto 5">
+                                <h4>Nike 2000</h4>
+                                <p>$140.000</p>
+                                <div class="product-details">
+                                    <p>Calzado para hombre</p>
+                                    <div class="color-icons">
+                                        <span class="color-icon" style="background-color: black;"></span>
+                                        <span class="color-icon" style="background-color: white;"></span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    
+                        <!-- Producto 6 -->
+                        <div class="producto" data-colores="negro,blanco" data-tallas="20,22,24,26,28,30,32,34,36,38,40,42">
+                            <a href="producto6.html" class="product-link">
+                                <img src="PumaNitro.jpeg" alt="Producto 6">
+                                <h4>Puma Nitro</h4>
+                                <p>$150.000</p>
+                                <div class="product-details">
+                                    <p>Calzado para hombre</p>
+                                    <div class="color-icons">
+                                        <span class="color-icon" style="background-color: black;"></span>
+                                        <span class="color-icon" style="background-color: white;"></span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
         </div>
     </section>
 
-<!-- Mensaje si no hay productos disponibles -->
-<div id="no-products-message" class="no-products-message" style="display: none;">
-    <img src="sin-resultados.png" alt="Sin resultados" class="no-results-image">
-    <p class="no-results-text">¡Ups! No encontramos productos que coincidan con tus filtros. Intenta ajustar los filtros para ver más opciones.</p>
-    <button class="reset-filters-btn" onclick="resetFilters()">Reiniciar filtros</button>
-</div>
-
+    <!-- Mensaje si no hay productos disponibles -->
+    <div id="no-products-message" class="no-products-message" style="display: none;">
+        <img src="sin-resultados.png" alt="Sin resultados" class="no-results-image">
+        <p class="no-results-text">¡Ups! No encontramos productos que coincidan con tus filtros. Intenta ajustar los filtros para ver más opciones.</p>
+        <button class="reset-filters-btn" onclick="resetFilters()">Reiniciar filtros</button>
+    </div>
 </main>
 
 <!-- Footer -->
@@ -214,7 +220,27 @@
     </div>
 </footer>
 
+<script src="scripts.js">
 
+document.addEventListener('DOMContentLoaded', function() {
+    const hamburgerIcon = document.getElementById('hamburger-icon');
+    const navbarMenu = document.getElementById('navbar-menu');
+    const mostrarFiltrosBtn = document.getElementById('mostrar-filtros-btn');
+    const filtros = document.getElementById('filtros');
 
+    if (hamburgerIcon && navbarMenu) {
+        hamburgerIcon.addEventListener('click', function() {
+            navbarMenu.classList.toggle('active');
+        });
+    }
+
+    if (mostrarFiltrosBtn && filtros) {
+        mostrarFiltrosBtn.addEventListener('click', function() {
+            filtros.classList.toggle('active');
+        });
+    }
+});
+
+</script>
 </body>
 </html>
