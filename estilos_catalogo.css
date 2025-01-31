@@ -1,4 +1,4 @@
-/* General Styles */
+/* Estilos Generales */
 * {
     margin: 0;
     padding: 0;
@@ -7,183 +7,167 @@
 
 body {
     font-family: 'Montserrat', sans-serif;
-    background-color: #f5f5f5; /* Gris claro para el fondo */
-    color: #ffffff; /* blanco para el texto */
+    background-color: #f5f5f5;
+    color: #333;
     line-height: 1.6;
 }
 
-/* Navbar Styles */
+/* Navbar */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #000000; /* Negro para la barra de navegación */
-    color: #fff;
-    padding: 12px 30px; /* Más espacio para hacerlo más elegante */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave para la navbar */
+    background-color: #000000;
+    color: white;
+    padding: 10px 20px;
 }
 
 .navbar-logo {
     display: flex;
     align-items: center;
-    gap: 12px;
-    font-size: 2em;
-    font-weight: 700; /* Negrita para el logo */
+    gap: 10px;
+    font-size: 1.8em;
+    font-weight: 600;
+    color: white;
 }
 
 .navbar-logo img {
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
 }
 
-/* Navbar Menu */
+.navbar-logo span {
+    color: orange;
+}
+
+/* Menú de navegación (PC) */
 .navbar-menu {
+    list-style: none;
     display: flex;
-    gap: 25px;
+    gap: 30px;
+    margin-left: 20px;
+    align-items: center;
 }
 
-.navbar-menu a {
-    color: #fff;
+.navbar-menu li a {
     text-decoration: none;
-    font-weight: 600; /* Un poco más grueso para mayor claridad */
+    color: white;
+    font-weight: 600;
+    font-size: 1.1em;
     transition: color 0.3s ease;
 }
 
-.navbar-menu a:hover {
-    color: #FFA500; /* Naranja al pasar el cursor */
+.navbar-menu li a:hover {
+    color: orange;
 }
 
-/* Floating Cart Styles */
-.floating-cart {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 65px; /* Un poco más grande para más visibilidad */
-    height: 65px;
-    background-color: #FFA500; /* Naranja para el carrito flotante */
-    border-radius: 50%;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); /* Sombra más suave */
+/* Íconos de redes sociales (PC) */
+.navbar-menu .social-icons {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    z-index: 1000;
-    transition: transform 0.3s ease; /* Animación para un toque dinámico */
-}
-
-.floating-cart:hover {
-    transform: scale(1.05); /* Efecto de aumentar el tamaño al pasar el cursor */
-}
-
-.floating-cart img {
-    width: 45px;
-    height: 45px;
-}
-
-.floating-cart #cart-count {
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    background-color: red;
-    color: white;
-    font-size: 12px;
-    font-weight: bold;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* Cart Container Styles */
-.cart-container {
-    position: fixed;
-    bottom: 100px;
-    right: 20px;
-    width: 320px; /* Un poco más grande para más espacio */
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Sombra más difusa */
-    z-index: 999;
-    padding: 20px;
-    display: none;
-    flex-direction: column;
     gap: 15px;
-    transition: all 0.3s ease;
+    margin-left: 20px;
 }
 
-.cart-container.hidden {
+.navbar-menu .social-icons a {
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.navbar-menu .social-icons a:hover {
+    transform: scale(1.1);
+}
+
+.navbar-menu .social-icons img {
+    width: 28px;
+    height: 28px;
+}
+
+/* Estilos del ícono de hamburguesa */
+.navbar-hamburger {
     display: none;
-}
-
-.cart-container h2 {
-    font-size: 20px;
-    margin-bottom: 12px;
-    color: #000;
-    font-weight: 700;
-}
-
-.cart-items {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    max-height: 200px;
-    overflow-y: auto;
-    border-top: 1px solid #e1e1e1;
-    border-bottom: 1px solid #e1e1e1;
-    padding-top: 12px;
-    padding-bottom: 12px;
-}
-
-.cart-items li {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-    font-size: 15px;
-}
-
-.cart-total {
-    font-size: 18px;
-    font-weight: bold;
-    text-align: right;
-}
-
-.btn {
-    padding: 12px;
-    background-color: #FFA500; /* Naranja */
-    color: white;
-    border: none;
-    border-radius: 6px;
     cursor: pointer;
-    text-align: center;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
+    flex-direction: column;
+    gap: 5px;
 }
 
-.btn:hover {
-    background-color: #e68900; /* Naranja más oscuro al pasar el cursor */
+.navbar-hamburger .bar {
+    width: 30px;
+    height: 4px;
+    background-color: white;
+    border-radius: 5px;
 }
 
-/* Main Catalog Container */
+/* Estilos para pantallas pequeñas (Tablet y móviles) */
+@media (max-width: 1024px) {
+    .navbar-hamburger {
+        display: flex;
+    }
+
+    .navbar-menu {
+        display: none;
+        flex-direction: column;
+        gap: 10px;
+        position: absolute;
+        top: 70px;
+        right: 10px;
+        background-color: rgba(0, 0, 0, 0.9);
+        width: 200px;
+        padding: 15px;
+        border-radius: 5px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        z-index: 1000;
+    }
+
+    .navbar-menu.active {
+        display: flex;
+    }
+
+    .navbar-menu li a {
+        font-size: 1em;
+    }
+
+    .navbar-menu .social-icons {
+        gap: 10px;
+        margin-left: 0;
+    }
+
+    .navbar-menu .social-icons img {
+        width: 24px;
+        height: 24px;
+    }
+}
+
+/* Contenedor Principal */
 .catalogo-container {
     display: flex;
     gap: 1.5rem;
     padding: 20px;
 }
 
-/* Filters */
+/* Botón para mostrar/ocultar filtros en móviles */
+.mostrar-filtros-btn {
+    display: none;
+    background-color: #1E3A8A;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+/* Filtros */
 .filtros {
     flex: 1;
     background: #020202;
     padding: 1.5rem;
     color: white;
     border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra para darle profundidad */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .filtros h3 {
-    font-size: 20px;
+    font-size: 24px;
     border-bottom: 2px solid #444;
     padding-bottom: 0.6rem;
     margin-bottom: 1.2rem;
@@ -199,6 +183,17 @@ body {
     margin-bottom: 12px;
 }
 
+.filtros ul li a {
+    color: #d4af37;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.filtros ul li a:hover {
+    color: #c89e35;
+}
+
 .filtro-precio {
     margin-top: 1.5rem;
 }
@@ -208,10 +203,14 @@ body {
     margin-bottom: 8px;
 }
 
+.filtro-precio .precio-inputs {
+    display: flex;
+    gap: 10px;
+}
+
 .filtro-precio .precio-inputs input {
-    width: 45%;
+    width: 48%;
     padding: 8px;
-    margin-right: 5%;
     border: 1px solid #444;
     border-radius: 6px;
     background: #292929;
@@ -220,6 +219,29 @@ body {
 }
 
 .filtro-precio .precio-inputs input:hover {
+    background: #444444;
+}
+
+.filtro-color ul {
+    list-style: none;
+    padding: 0;
+}
+
+.filtro-color ul li {
+    margin-bottom: 8px;
+}
+
+.filtro-talla select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #444;
+    border-radius: 6px;
+    background: #292929;
+    color: white;
+    transition: background 0.3s ease;
+}
+
+.filtro-talla select:hover {
     background: #444444;
 }
 
@@ -239,25 +261,38 @@ body {
     background-color: #142c71;
 }
 
-/* Products Section */
+/* Productos */
 .productos {
     flex: 3;
+    overflow: hidden;
 }
 
-.productos h2 {
-    font-size: 1.7rem;
-    margin-bottom: 1.2rem;
-    font-weight: 700;
+.organizar-por {
+    margin-bottom: 20px;
+}
+
+.organizar-por label {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.organizar-por select {
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
 }
 
 .grid-productos {
+    grid-auto-flow: dense;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 2rem;
     padding: 20px;
+    margin: 0;
 }
 
 .producto {
+    position: relative;
     background: #fff;
     padding: 1.2rem;
     border-radius: 10px;
@@ -266,6 +301,10 @@ body {
     box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
     border: 1px solid #e1e1e1;
     cursor: pointer;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .producto:hover {
@@ -280,83 +319,59 @@ body {
 }
 
 .producto h4 {
-    font-size: 18px;
+    font-size: 20px;
     margin-bottom: 0.8rem;
     font-weight: 600;
-    background-color: rgba(0, 0, 0, 0.6); /* Fondo oscuro semi-transparente */
-    color: white; /* Texto blanco para contraste */
-    padding: 8px;
-    border-radius: 6px;
+    color: #333;
 }
 
 .producto p {
-    color: #1E3A8A; /* Azul oscuro */
+    color: #1E3A8A;
     font-weight: bold;
     margin-bottom: 1.2rem;
 }
 
-/* Estilos para los iconos de colores */
-.product-icons {
+.product-details {
+    font-size: 14px;
+    color: #555;
+    margin-top: 10px;
+}
+
+.product-details p {
+    margin: 5px 0;
+}
+
+/* Estilos para los íconos de colores */
+.color-icons {
+    display: flex;
+    gap: 8px;
     margin-top: 10px;
 }
 
 .color-icon {
     display: inline-block;
-    width: 22px;
-    height: 22px;
+    width: 24px; /* Aumenta el tamaño */
+    height: 24px; /* Aumenta el tamaño */
     border-radius: 50%;
-    margin-right: 8px;
+    border: 2px solid #333; /* Contorno más oscuro */
     cursor: pointer;
 }
 
-.available-sizes {
-    font-size: 15px;
-    color: #333333;
-    margin-top: 12px;
-}
-
-/* Hacer toda la tarjeta clickeable */
-.product-link {
-    display: block;
-    text-decoration: none;
-    color: inherit;
-}
-
-.productos .producto {
-    display: inline-block;
-    width: 100%;
-    margin-bottom: 1.8rem;
-    text-align: center;
-    background-color: #000000;
-    padding: 22px;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-    transition: all 0.3s ease;
-    border: 1px solid #e1e1e1;
-}
-
-.productos .producto:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-}
-
-.productos .producto img {
-    width: 100%;
-    height: auto;
-    border-radius: 6px;
-    margin-bottom: 12px;
-}
-/* Estilo del mensaje cuando no haya productos */
-.no-products-message {
-    background-color: #f8d7da;
-    color: #721c24;
-    padding: 10px;
-    margin: 20px 0;
+/* Banner de oferta */
+.oferta-banner {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #ff6b6b;
+    color: white;
+    padding: 5px 10px;
     border-radius: 5px;
-    font-size: 16px;
-    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    z-index: 1;
 }
-/* Estilo para el mensaje de no productos */
+
+/* Mensaje de "No hay productos" */
 .no-products-message {
     display: flex;
     flex-direction: column;
@@ -397,4 +412,112 @@ body {
 
 .reset-filters-btn:hover {
     background-color: #e55a5a;
+}
+
+/* Estilos Responsivos */
+@media (max-width: 1024px) {
+    .catalogo-container {
+        flex-direction: column;
+    }
+
+    .filtros {
+        width: 100%;
+        margin-bottom: 20px;
+        display: none;
+    }
+
+    .filtros.active {
+        display: block;
+    }
+
+    .mostrar-filtros-btn {
+        display: block;
+    }
+
+    .productos {
+        width: 100%;
+    }
+}
+
+@media (min-width: 1024px) {
+    .catalogo-container {
+        position: relative;
+    }
+
+    .filtros {
+        position: sticky;
+        top: 20px; /* Ajusta según la altura de tu navbar */
+        height: calc(100vh - 40px); /* Ajusta la altura según sea necesario */
+        overflow-y: auto; /* Permite el desplazamiento si el contenido es largo */
+    }
+
+    .productos {
+        flex: 3;
+        overflow: hidden;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar-hamburger {
+        display: flex;
+    }
+
+    .navbar-menu {
+        display: none;
+        flex-direction: column;
+        gap: 10px;
+        position: absolute;
+        top: 70px;
+        right: 10px;
+        background-color: rgba(0, 0, 0, 0.9);
+        width: 200px;
+        padding: 15px;
+        border-radius: 5px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        z-index: 1000;
+    }
+
+    .navbar-menu.active {
+        display: flex;
+    }
+
+    .navbar-icons {
+        display: none;
+    }
+
+    .grid-productos {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+        padding: 10px;
+    }
+
+    .producto {
+        padding: 1rem;
+    }
+
+    .producto h4 {
+        font-size: 18px;
+    }
+
+    .producto p {
+        font-size: 14px;
+    }
+
+    .no-results-text {
+        font-size: 16px;
+    }
+}
+/* Eliminar subrayado en TODOS los enlaces del catálogo */
+.producto a,
+.filtros a,
+.navbar-menu a {
+    text-decoration: none !important;
+    color: inherit !important;
+}
+
+/* Eliminar subrayado al pasar el mouse */
+.producto a:hover,
+.filtros a:hover,
+.navbar-menu a:hover {
+    text-decoration: none !important;
 }
