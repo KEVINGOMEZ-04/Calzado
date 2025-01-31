@@ -68,71 +68,131 @@ function generateOrderCode() {
         .join("|");
 }
 
-// Aplicar filtros
+// Función para formatear el precio con separación de miles
+function formatPrice(input) {
+    let value = input.value.replace(/\D/g, ''); // Elimina caracteres no numéricos
+    if (value) {
+        value = Number(value).toLocaleString('es-CO'); // Formatea con separación de miles
+    }
+    input.value = value;
+}
+
+// Función para restablecer el catálogo a su estado inicial
+function resetearCatalogo() {
+    const productos = document.querySelectorAll('.producto');
+    productos.forEach(producto => {
+        producto.style.display = 'block'; // Mostrar todos los productos
+    });
+
+    // Restablecer el menú desplegable de "Organizar por"
+    document.getElementById('organizar-por').value = 'menor-mayor';
+
+    // Restablecer los filtros
+    resetFilters();
+}
+
+// Función para aplicar los filtros
 function applyFilters() {
+    // Restablecer el catálogo antes de aplicar los filtros
+    resetearCatalogo();
+
     // Obtener los valores de los filtros
-    const minPrice = parseInt(document.getElementById('min-precio').value || '0', 10);
-    const maxPrice = parseInt(document.getElementById('max-precio').value || 'Infinity', 10);
-    const selectedColors = Array.from(document.querySelectorAll('.filtro-color input:checked')).map(input => input.id);
+    const minPrice = document.getElementById('min-precio').value.replace(/\D/g, '');
+    const maxPrice = document.getElementById('max-precio').value.replace(/\D/g, '');
+    const selectedColors = Array.from(document.querySelectorAll('.filtro-color input[type="checkbox"]:checked')).map(checkbox => checkbox.value);
     const selectedSize = document.getElementById('select-talla').value;
 
-    // Seleccionar todos los productos
-    const products = document.querySelectorAll('.producto');
-    let foundProducts = false; // Variable para verificar si encontramos productos
+    // Obtener todos los productos
+    const productos = document.querySelectorAll('.producto');
 
-    // Verificar si los precios son válidos
-    if (isNaN(minPrice) || isNaN(maxPrice) || minPrice < 0 || maxPrice < 0) {
-        alert("Por favor, ingresa precios válidos.");
-        return;
-    }
+    // Recorrer cada producto y aplicar los filtros
+    productos.forEach(producto => {
+        const precio = producto.querySelector('p').textContent.replace(/\D/g, '');
+        const colores = producto.getAttribute('data-colores').split(',');
+        const tallas = producto.getAttribute('data-tallas').split(',');
 
-    // Filtrar productos
-    products.forEach(product => {
-        const priceElement = product.querySelector('p');
-        const price = priceElement ? parseInt(priceElement.textContent.replace(/[^0-9]/g, ''), 10) : 0;
-        const colors = product.dataset.colores ? product.dataset.colores.split(',') : [];
-        const sizes = product.dataset.tallas ? product.dataset.tallas.split(',') : [];
+        // Verificar filtro por precio
+        const precioValido = (!minPrice || precio >= minPrice) && (!maxPrice || precio <= maxPrice);
 
-        // Validar filtros
-        const matchesPrice = price >= minPrice && price <= maxPrice;
-        const matchesColor = selectedColors.length === 0 || selectedColors.some(color => colors.includes(color));
-        const matchesSize = selectedSize === "todos" || sizes.includes(selectedSize);
+        // Verificar filtro por color
+        const colorValido = selectedColors.length === 0 || selectedColors.some(color => colores.includes(color));
 
-        // Mostrar u ocultar productos según los filtros
-        if (matchesPrice && matchesColor && matchesSize) {
-            product.style.display = 'block';
-            foundProducts = true;
+        // Verificar filtro por talla
+        const tallaValida = selectedSize === 'todos' || tallas.includes(selectedSize);
+
+        // Mostrar u ocultar el producto según los filtros
+        if (precioValido && colorValido && tallaValida) {
+            producto.style.display = 'block';
         } else {
-            product.style.display = 'none';
+            producto.style.display = 'none';
         }
     });
 
-    // Mostrar el mensaje si no hay productos
+    // Mostrar mensaje si no hay productos que coincidan
     const noProductsMessage = document.getElementById('no-products-message');
-    if (noProductsMessage) {
-        noProductsMessage.style.display = foundProducts ? 'none' : 'block';
+    const visibleProducts = Array.from(productos).filter(producto => producto.style.display !== 'none');
+
+    if (visibleProducts.length === 0) {
+        noProductsMessage.style.display = 'flex';
+    } else {
+        noProductsMessage.style.display = 'none';
     }
 }
 
-// Reiniciar filtros
+// Función para reiniciar los filtros
 function resetFilters() {
-    // Limpiar campos de los filtros
+    // Limpiar los inputs de precio
     document.getElementById('min-precio').value = '';
     document.getElementById('max-precio').value = '';
-    document.querySelectorAll('.filtro-color input').forEach(input => input.checked = false);
-    document.getElementById('select-talla').value = 'todos';
 
-    // Mostrar todos los productos
-    const products = document.querySelectorAll('.producto');
-    products.forEach(product => {
-        product.style.display = 'block';
+    // Desmarcar todos los checkboxes de color
+    document.querySelectorAll('.filtro-color input[type="checkbox"]').forEach(checkbox => {
+        checkbox.checked = false;
     });
 
-    // Ocultar el mensaje de no productos
-    const noProductsMessage = document.getElementById('no-products-message');
-    if (noProductsMessage) {
-        noProductsMessage.style.display = 'none';
+    // Restablecer la selección de talla
+    document.getElementById('select-talla').value = 'todos';
+}
+
+// Función para organizar productos
+function organizarProductos(criterio) {
+    const productosContainer = document.querySelector('.grid-productos');
+    const productos = Array.from(productosContainer.querySelectorAll('.producto'));
+
+    // Restablecer el catálogo antes de aplicar cualquier ordenación o filtro
+    resetearCatalogo();
+
+    // Función para obtener el precio de un producto
+    const obtenerPrecio = (producto) => {
+        const precioTexto = producto.querySelector('p').textContent.replace(/\D/g, '');
+        return parseInt(precioTexto, 10);
+    };
+
+    // Función para obtener las ventas de un producto
+    const obtenerVentas = (producto) => {
+        return parseInt(producto.getAttribute('data-ventas'), 10) || 0;
+    };
+
+    // Ordenar o filtrar productos según el criterio
+    if (criterio === 'menor-mayor') {
+        productos.sort((a, b) => obtenerPrecio(a) - obtenerPrecio(b));
+    } else if (criterio === 'mayor-menor') {
+        productos.sort((a, b) => obtenerPrecio(b) - obtenerPrecio(a));
+    } else if (criterio === 'ofertas') {
+        // Filtrar productos en oferta
+        productos.forEach(producto => {
+            const esOferta = producto.getAttribute('data-oferta') === 'true';
+            producto.style.display = esOferta ? 'block' : 'none';
+        });
+        return; // No es necesario reordenar, solo filtrar
+    } else if (criterio === 'mas-vendidos') {
+        // Ordenar productos por ventas (de mayor a menor)
+        productos.sort((a, b) => obtenerVentas(b) - obtenerVentas(a));
     }
+
+    // Limpiar el contenedor y agregar los productos ordenados
+    productosContainer.innerHTML = '';
+    productos.forEach(producto => productosContainer.appendChild(producto));
 }
 
 // Menú hamburguesa
@@ -144,7 +204,6 @@ document.addEventListener('DOMContentLoaded', function () {
     // Verificar si los elementos existen antes de agregar el evento
     if (hamburger && navbarMenu) {
         hamburger.addEventListener('click', () => {
-            console.log("Ícono de hamburguesa clickeado"); // Depuración
             navbarMenu.classList.toggle('active');
         });
 
@@ -162,14 +221,25 @@ document.addEventListener('DOMContentLoaded', function () {
 // Botón de Volver arriba
 const backToTopButton = document.getElementById('back-to-top');
 
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 300) {
-        backToTopButton.style.display = 'block';
-    } else {
-        backToTopButton.style.display = 'none';
-    }
-});
+if (backToTopButton) {
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            backToTopButton.style.display = 'block';
+        } else {
+            backToTopButton.style.display = 'none';
+        }
+    });
 
-backToTopButton.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-});
+    backToTopButton.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+}
+
+// Mostrar/ocultar filtros en móviles
+const mostrarFiltrosBtn = document.getElementById('mostrar-filtros-btn');
+if (mostrarFiltrosBtn) {
+    mostrarFiltrosBtn.addEventListener('click', () => {
+        const filtros = document.getElementById('filtros');
+        filtros.classList.toggle('active');
+    });
+}
