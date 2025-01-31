@@ -10,63 +10,74 @@ const cartItemsContainer = document.getElementById("cart-items");
 const cartTotal = document.getElementById("cart-total");
 const checkoutBtn = document.getElementById("checkout-btn");
 
-// Toggle carrito
-if (cartIcon && cartContainer) {
-    cartIcon.addEventListener("click", () => {
-        cartContainer.classList.toggle("hidden");
+// Carrito y funcionalidades globales
+let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+function actualizarCarrito() {
+    const contador = document.querySelector('.carrito-contador');
+    const itemsContainer = document.querySelector('.carrito-items');
+    const totalContainer = document.querySelector('.carrito-total span');
+    
+    contador.textContent = carrito.length;
+    itemsContainer.innerHTML = carrito.map(item => `
+        <div class="carrito-item">
+            <span>${item.nombre}</span>
+            <span>$${item.precio.toLocaleString()}</span>
+        </div>
+    `).join('');
+    
+    const total = carrito.reduce((sum, item) => sum + item.precio, 0);
+    totalContainer.textContent = total.toLocaleString();
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+}
+
+function addToCart(nombre, precio) {
+    const talla = document.querySelector('.talla-item.selected')?.dataset.talla || 'Sin talla';
+    const color = document.querySelector('.color-btn.selected')?.dataset.color || 'Sin color';
+    
+    carrito.push({
+        nombre: `${nombre} - Talla ${talla}, Color ${color}`,
+        precio: precio
     });
+    
+    actualizarCarrito();
+    mostrarNotificacion('¡Producto añadido!');
 }
 
-// Añadir producto al carrito
-function addToCart(productName, price) {
-    cartItems.push({ productName, price });
-    total += parseFloat(price);
-    updateCart();
+function toggleCarrito() {
+    document.querySelector('.carrito-contenido').classList.toggle('mostrar');
 }
 
-// Actualizar carrito
-function updateCart() {
-    if (cartItemsContainer && cartTotal && cartCount) {
-        cartItemsContainer.innerHTML = ""; // Limpiar lista
-        cartItems.forEach((item, index) => {
-            const li = document.createElement("li");
-            li.innerHTML = `
-                ${item.productName} - $${item.price.toFixed(2)}
-                <button onclick="removeFromCart(${index})">X</button>
-            `;
-            cartItemsContainer.appendChild(li);
-        });
-
-        cartTotal.textContent = total.toFixed(2);
-        cartCount.textContent = cartItems.length;
-    }
+function finalizarCompra() {
+    const pedido = carrito.map(item => `• ${item.nombre}: $${item.precio.toLocaleString()}`).join('\n');
+    const total = carrito.reduce((sum, item) => sum + item.precio, 0);
+    const codigo = `PEDIDO CALZADOCALIDOSO\n${pedido}\n\nTOTAL: $${total.toLocaleString()}`;
+    
+    navigator.clipboard.writeText(codigo);
+    window.open(`https://wa.me/573005744668?text=${encodeURIComponent(codigo)}`, '_blank');
+    carrito = [];
+    actualizarCarrito();
 }
 
-// Eliminar producto del carrito
-function removeFromCart(index) {
-    total -= cartItems[index].price;
-    cartItems.splice(index, 1);
-    updateCart();
+document.addEventListener('DOMContentLoaded', actualizarCarrito);
+
+// Notificación Flotante
+function mostrarNotificacion(mensaje) {
+    const notificacion = document.createElement('div');
+    notificacion.className = 'notificacion';
+    notificacion.textContent = mensaje;
+    
+    document.body.appendChild(notificacion);
+    
+    setTimeout(() => {
+        notificacion.remove();
+    }, 3000);
 }
 
-// Finalizar compra
-if (checkoutBtn) {
-    checkoutBtn.addEventListener("click", () => {
-        const orderCode = generateOrderCode();
-        alert(`Código de pedido: ${orderCode}`);
-        navigator.clipboard.writeText(orderCode); // Copiar al portapapeles
-        cartItems = [];
-        total = 0.0;
-        updateCart();
-    });
-}
 
-// Generar código de pedido
-function generateOrderCode() {
-    return cartItems
-        .map(item => `${item.productName}-${item.price.toFixed(2)}`)
-        .join("|");
-}
+
+// Inicializar Carrito al cargar
+document.addEventListener('DOMContentLoaded', actualizarCarrito);
 
 // Función para formatear el precio con separación de miles
 function formatPrice(input) {
@@ -77,23 +88,27 @@ function formatPrice(input) {
     input.value = value;
 }
 
+// Función para convertir precios formateados a números
+function convertirPrecioANumero(precioFormateado) {
+    return parseInt(precioFormateado.replace(/\D/g, ''), 10);
+}
+
 // Función para restablecer el catálogo a su estado inicial
 function resetearCatalogo() {
     const productos = document.querySelectorAll('.producto');
     productos.forEach(producto => {
         producto.style.display = 'block'; // Mostrar todos los productos
     });
-
 }
 
 // Función para aplicar los filtros
 function applyFilters() {
     // Restablecer el catálogo antes de aplicar los filtros
     resetearCatalogo();
-    
-    // Obtener los valores de los filtros
-    const minPrice = document.getElementById('min-precio').value.replace(/\D/g, '');
-    const maxPrice = document.getElementById('max-precio').value.replace(/\D/g, '');
+
+    // Obtener los valores de los filtros y convertirlos a números
+    const minPrice = convertirPrecioANumero(document.getElementById('min-precio').value);
+    const maxPrice = convertirPrecioANumero(document.getElementById('max-precio').value);
     const selectedColors = Array.from(document.querySelectorAll('.filtro-color input[type="checkbox"]:checked')).map(checkbox => checkbox.value);
     const selectedSize = document.getElementById('select-talla').value;
 
@@ -102,12 +117,13 @@ function applyFilters() {
 
     // Recorrer cada producto y aplicar los filtros
     productos.forEach(producto => {
-        const precio = producto.querySelector('p').textContent.replace(/\D/g, '');
+        const precioProducto = convertirPrecioANumero(producto.querySelector('p').textContent);
         const colores = producto.getAttribute('data-colores').split(',');
         const tallas = producto.getAttribute('data-tallas').split(',');
 
         // Verificar filtro por precio
-        const precioValido = (!minPrice || precio >= minPrice) && (!maxPrice || precio <= maxPrice);
+        const precioValido = (isNaN(minPrice) || precioProducto >= minPrice) &&
+                             (isNaN(maxPrice) || precioProducto <= maxPrice);
 
         // Verificar filtro por color
         const colorValido = selectedColors.length === 0 || selectedColors.some(color => colores.includes(color));
@@ -156,19 +172,7 @@ function resetFilters() {
 function organizarProductos(criterio) {
     const productosContainer = document.querySelector('.grid-productos');
     const productos = Array.from(productosContainer.querySelectorAll('.producto'));
-// Función para restablecer el catálogo a su estado inicial
-function resetearCatalogo() {
-    const productos = document.querySelectorAll('.producto');
-    productos.forEach(producto => {
-        producto.style.display = 'block'; // Mostrar todos los productos
-    });
 
-    // Restablecer el menú desplegable de "Organizar por"
-    document.getElementById('organizar-por').value = 'menor-mayor'; // O el valor predeterminado que desees
-
-    // Restablecer los filtros (opcional, si deseas que también se limpien los filtros)
-    resetFilters();
-}
     // Función para obtener el precio de un producto
     const obtenerPrecio = (producto) => {
         const precioTexto = producto.querySelector('p').textContent.replace(/\D/g, '');
@@ -233,3 +237,23 @@ if (mostrarFiltrosBtn) {
         filtros.classList.toggle('active');
     });
 }
+// Selección de color
+document.querySelectorAll('.color-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        // Remover selección previa
+        document.querySelectorAll('.color-btn').forEach(b => b.classList.remove('selected'));
+        
+        // Añadir selección actual
+        this.classList.add('selected');
+    });
+});
+// Selección de talla
+document.querySelectorAll('.talla-btn:not(.agotado)').forEach(btn => {
+    btn.addEventListener('click', function() {
+        // Remover selección previa
+        document.querySelectorAll('.talla-btn').forEach(t => t.classList.remove('selected'));
+        
+        // Añadir selección actual
+        this.classList.add('selected');
+    });
+});
