@@ -54,7 +54,7 @@ function finalizarCompra() {
     const codigo = `PEDIDO CALZADOCALIDOSO\n${pedido}\n\nTOTAL: $${total.toLocaleString()}`;
     
     navigator.clipboard.writeText(codigo);
-    window.open(`https://wa.me/573005744668?text=${encodeURIComponent(codigo)}`, '_blank');
+    window.open(`https://wa.me/573005741668?text=${encodeURIComponent(codigo)}`, '_blank');
     carrito = [];
     actualizarCarrito();
 }
