@@ -137,7 +137,7 @@
 
         .contact-section {
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
             max-width: 1200px;
             margin: 2rem auto;
             padding: 20px;
@@ -148,7 +148,8 @@
 
         .contact-container {
             flex: 1;
-            margin-right: 2rem;
+            margin-right: 0;
+            margin-bottom: 2rem;
         }
 
         .contact-container h1 {
@@ -208,6 +209,7 @@
             padding: 20px;
             background-color: #f9f9f9;
             border-radius: var(--radius);
+            margin-bottom: 2rem;
         }
 
         .contact-info h2 {
@@ -246,9 +248,10 @@
             vertical-align: middle;
             margin-right: 10px;
         }
-                .map-container {
+
+        .map-container {
             flex: 1;
-            margin-left: 2rem;
+            margin-left: 0;
             border-radius: var(--radius);
             overflow: hidden;
         }
@@ -259,6 +262,20 @@
             border-radius: var(--radius);
         }
 
+        @media (min-width: 768px) {
+            .contact-section {
+                flex-direction: row;
+            }
+
+            .contact-container {
+                margin-right: 2rem;
+                margin-bottom: 0;
+            }
+
+            .map-container {
+                margin-left: 2rem;
+            }
+        }
     </style>
 </head>
 <body>
