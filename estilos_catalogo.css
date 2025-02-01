@@ -521,3 +521,262 @@ body {
 .navbar-menu a:hover {
     text-decoration: none !important;
 }
+/* Botón Reiniciar mejorado */
+.reiniciar-btn {
+    background-color: #1e3a8a;
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-left: 15px;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.reiniciar-btn:hover {
+    background-color: #1e3a8a;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+}
+
+.reiniciar-btn::before {
+    content: "↺";
+    font-size: 1.1em;
+}
+/* Estilos FAQ */
+.faq-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.faq-container h1 {
+    text-align: center;
+    color: #1E3A8A;
+    margin-bottom: 40px;
+    font-size: 2.5em;
+}
+
+.faq-item {
+    border: 2px solid #e1e1e1;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    transition: all 0.3s ease;
+}
+
+.faq-item.active {
+    border-color: #1E3A8A;
+}
+
+.faq-question {
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    background-color: #fff;
+}
+
+.faq-question h3 {
+    color: #333;
+    margin: 0;
+    font-size: 1.1em;
+    flex: 1;
+}
+
+.toggle-icon {
+    font-weight: bold;
+    font-size: 1.5em;
+    color: #1E3A8A;
+    margin-left: 15px;
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    padding: 0 20px;
+    background-color: #f9f9f9;
+    border-radius: 0 0 10px 10px;
+}
+
+.faq-answer p {
+    padding: 15px 0;
+    margin: 0;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* Responsive FAQ */
+@media (max-width: 768px) {
+    .faq-container {
+        margin: 20px auto;
+    }
+    
+    .faq-question h3 {
+        font-size: 1em;
+    }
+    
+    .faq-answer p {
+        font-size: 0.9em;
+    }
+}
+/* Estilos Política de Envíos */
+.politica-container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.politica-container h1 {
+    text-align: center;
+    color: #1E3A8A;
+    margin-bottom: 40px;
+    font-size: 2.3em;
+}
+
+.politica-section {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    margin-bottom: 25px;
+    padding: 20px;
+    border: 2px solid #e1e1e1;
+}
+
+.politica-section h2 {
+    color: #1E3A8A;
+    margin-bottom: 15px;
+    font-size: 1.4em;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.politica-content {
+    padding: 0 15px;
+}
+
+.tabla-envios {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 20px 0;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #e1e1e1;
+}
+
+.fila-header, .fila {
+    padding: 12px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.fila-header {
+    background-color: #1E3A8A;
+    color: white;
+    font-weight: bold;
+}
+
+.fila:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+.nota {
+    font-size: 0.9em;
+    color: #666;
+    margin-top: 10px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .politica-container {
+        margin: 20px auto;
+    }
+    
+    .politica-section h2 {
+        font-size: 1.2em;
+    }
+    
+    .tabla-envios {
+        grid-template-columns: 1fr;
+    }
+    
+    .fila-header, .fila {
+        flex-direction: column;
+    }
+}
+/* Contenedor de tabla de envíos */
+.tabla-envios-container {
+    max-width: 800px;
+    margin: 25px auto;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 12px;
+}
+
+.tabla-envios {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: #e1e1e1;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.fila {
+    display: contents;
+}
+
+.fila.header .columna {
+    background: #1E3A8A;
+    color: white;
+    font-weight: 600;
+}
+
+.columna {
+    padding: 15px;
+    background: white;
+    display: flex;
+    align-items: center;
+    min-height: 50px;
+}
+
+.nota-envio {
+    text-align: center;
+    margin-top: 15px;
+    color: #666;
+    font-size: 0.9em;
+}
+
+/* Responsive para móviles */
+@media (max-width: 768px) {
+    .tabla-envios {
+        grid-template-columns: 1fr;
+    }
+    
+    .fila.header {
+        display: none;
+    }
+    
+    .columna {
+        padding: 12px;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .columna:nth-child(odd) {
+        background: #f5f5f5;
+    }
+    
+    .columna::before {
+        content: attr(data-label);
+        font-weight: 600;
+        color: #1E3A8A;
+        margin-bottom: 5px;
+        font-size: 0.9em;
+    }
+}
