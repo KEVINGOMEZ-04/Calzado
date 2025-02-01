@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - CalzadoCalidoso</title>
+    <link rel="stylesheet" href="estilos_catalogo.css">
+    <link rel="stylesheet" href="estilos_pagina_principal.css">
+</head>
+<body>
+    <!-- Navbar consistente -->
+    <header class="navbar">
+        <div class="navbar-logo">
+            <img src="logo.png" alt="Logo de la Tienda">
+            <span>CalzadoCalidoso</span>
+        </div>
+        <ul class="navbar-menu" id="navbar-menu">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="catalogo.html">Catálogo</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li><a href="contacto.html">Contáctanos</a></li>
+            <li><a href="faq.html" class="active">FAQ</a></li>
+            <li><a href="envios.html">Política de envíos</a></li>
+            <li class="social-icons">
+                <a href="https://www.facebook.com/"><img src="facebook.png" alt="Facebook"></a>
+                <a href="https://www.instagram.com/"><img src="instagram.png" alt="Instagram"></a>
+                <a href="https://www.x.com/"><img src="X.png" alt="Twitter"></a>
+            </li>
+        </ul>
+        <div class="navbar-hamburger" id="hamburger-icon">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+    </header>
+
+    <!-- Contenido principal FAQ -->
+    <main class="faq-container">
+        <h1>Preguntas Frecuentes</h1>
+        
+        <div class="faq-item">
+            <div class="faq-question">
+                <h3>¿Cuáles son los métodos de pago aceptados?</h3>
+                <span class="toggle-icon">+</span>
+            </div>
+            <div class="faq-answer">
+                <p>Aceptamos todas las tarjetas de crédito/débito principales, transferencias bancarias y pagos a través de PayPal.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <h3>¿Cuánto tardan en llegar los envíos?</h3>
+                <span class="toggle-icon">+</span>
+            </div>
+            <div class="faq-answer">
+                <p>El tiempo de entrega estándar es de 3-5 días hábiles para áreas urbanas. Para zonas rurales puede tardar hasta 7 días hábiles.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <h3>¿Cómo puedo realizar un cambio de talla?</h3>
+                <span class="toggle-icon">+</span>
+            </div>
+            <div class="faq-answer">
+                <p>Ponte en contacto con nuestro servicio al cliente dentro de los 7 días posteriores a la recepción. Deberás enviar el producto en su empaque original.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <h3>¿Ofrecen garantía en los productos?</h3>
+                <span class="toggle-icon">+</span>
+            </div>
+            <div class="faq-answer">
+                <p>Todos nuestros productos tienen garantía de 6 meses contra defectos de fabricación. No cubre daños por uso inadecuado.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <h3>¿Puedo cancelar mi pedido?</h3>
+                <span class="toggle-icon">+</span>
+            </div>
+            <div class="faq-answer">
+                <p>Puedes cancelar pedidos no enviados contactando a nuestro equipo. Una vez enviado deberás seguir el proceso de devolución.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <p>CalzadoCalidoso &copy; 2025</p>
+        </div>
+    </footer>
+
+    <!-- Carrito Flotante -->
+<div class="carrito-flotante">
+    <div class="carrito-icono" onclick="toggleCarrito()">
+        🛒
+        <span class="carrito-contador">0</span>
+    </div>
+    
+    <div class="carrito-contenido">
+        <h3>Tu selección</h3>
+        <div class="carrito-items"></div>
+        <div class="carrito-total">
+            Total: $<span>0</span>
+        </div>
+        <button class="btn-comprar" onclick="finalizarCompra()">💬 Completar pedido</button>
+    </div>
+</div>
+
+
+    <script src="scripts.js"></script>
+
+</body>
+</html>

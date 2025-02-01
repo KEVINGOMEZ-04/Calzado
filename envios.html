@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Política de Envíos - CalzadoCalidoso</title>
+    <link rel="stylesheet" href="estilos_catalogo.css">
+    <link rel="stylesheet" href="estilos_pagina_principal.css">
+</head>
+<body>
+    <!-- Navbar consistente -->
+    <header class="navbar">
+        <div class="navbar-logo">
+            <img src="logo.png" alt="Logo de la Tienda">
+            <span>CalzadoCalidoso</span>
+        </div>
+        <ul class="navbar-menu" id="navbar-menu">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="catalogo.html">Catálogo</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li><a href="contacto.html">Contáctanos</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="envios.html" class="active">Política de envíos</a></li>
+            <li class="social-icons">
+                <a href="https://www.facebook.com/"><img src="facebook.png" alt="Facebook"></a>
+                <a href="https://www.instagram.com/"><img src="instagram.png" alt="Instagram"></a>
+                <a href="https://www.x.com/"><img src="X.png" alt="Twitter"></a>
+            </li>
+        </ul>
+        <div class="navbar-hamburger" id="hamburger-icon">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+    </header>
+
+    <!-- Contenido principal Política de Envíos -->
+    <main class="politica-container">
+        <h1>Nuestra Política de Envíos</h1>
+        
+        <section class="politica-section">
+            <h2>🚚 Tiempos de Entrega</h2>
+            <div class="politica-content">
+                <p>Realizamos envíos a todo el país con los siguientes tiempos estimados:</p>
+                <ul>
+                    <li><strong>Ciudades principales:</strong> 2-3 días hábiles</li>
+                    <li><strong>Áreas metropolitanas:</strong> 3-5 días hábiles</li>
+                    <li><strong>Zonas rurales:</strong> 5-7 días hábiles</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="politica-section">
+            <h2>📦 Costos de Envío</h2>
+            <div class="politica-content">
+                <p>Nuestros costos varían según la ubicación:</p>
+                <div class="tabla-envios-container">
+                    <h3>Costos de Envío</h3>
+                    <div class="tabla-envios">
+                        <div class="fila header">
+                            <div class="columna">Zona</div>
+                            <div class="columna">Costo</div>
+                        </div>
+                        <div class="fila">
+                            <div class="columna">Bogotá</div>
+                            <div class="columna">$12.000</div>
+                        </div>
+                        <div class="fila">
+                            <div class="columna">Otras ciudades</div>
+                            <div class="columna">$18.000</div>
+                        </div>
+                        <div class="fila">
+                            <div class="columna">Áreas rurales</div>
+                            <div class="columna">$25.000</div>
+                        </div>
+                    </div>
+                    <p class="nota-envio">*Envío gratis para compras superiores a $300.000</p>
+                </div>
+        </section>
+
+        <section class="politica-section">
+            <h2>🔍 Seguimiento de Pedidos</h2>
+            <div class="politica-content">
+                <p>Todos los envíos incluyen:</p>
+                <ul>
+                    <li>Número de guía actualizado</li>
+                    <li>Seguimiento en tiempo real</li>
+                    <li>Notificaciones por SMS/Email</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="politica-section">
+            <h2>🔄 Devoluciones</h2>
+            <div class="politica-content">
+                <p>Nuestra política de devoluciones:</p>
+                <ul>
+                    <li>30 días para cambios/devoluciones</li>
+                    <li>Producto debe estar en empaque original</li>
+                    <li>Sin costos adicionales por fallos de fábrica</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <p>CalzadoCalidoso &copy; 2025</p>
+        </div>
+    </footer>
+
+    <!-- Carrito Flotante -->
+    <div class="carrito-flotante">
+        <div class="carrito-icono" onclick="toggleCarrito()">
+            🛒
+            <span class="carrito-contador">0</span>
+        </div>
+        
+        <div class="carrito-contenido">
+            <h3>Tu selección</h3>
+            <div class="carrito-items"></div>
+            <div class="carrito-total">
+                Total: $<span>0</span>
+            </div>
+            <button class="btn-comprar" onclick="finalizarCompra()">💬 Completar pedido</button>
+        </div>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
